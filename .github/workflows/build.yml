@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches: 
+     - '**'
+  pull_request:
+    branches: 
+     - '**'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+     - uses: actions/checkout@v4
+     
+     - name: Setup MSBuild
+       uses: microsoft/setup-msbuild@v1.3
+     
+     - name: Setup NuGet
+       uses: NuGet/setup-nuget@v1.2.0
+     
+     - name: Restore NuGet packages
+       run: nuget restore "Skyline Example Flow Engineering.sln"
+     
+     - name: Build Solution
+       run: msbuild "Skyline Example Flow Engineering.sln" /p:Configuration=Release -clp:ForceConsoleColor
+  
