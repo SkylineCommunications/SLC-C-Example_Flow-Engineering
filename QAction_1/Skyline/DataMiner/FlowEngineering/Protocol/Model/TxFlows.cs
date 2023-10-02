@@ -62,7 +62,7 @@
             }
 
             flow.FlowOwner = FlowOwner.FlowEngineering;
-            flow.LinkedFlow = Convert.ToString(flowInfo.FlowId);
+            flow.LinkedFlow = Convert.ToString(flowInfo.SourceFlowId);
             flow.OutgoingInterface = flowInfo.Interface;
             flow.ExpectedBitrate = ip.BitRate;
 
