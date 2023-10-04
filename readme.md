@@ -81,56 +81,58 @@ List of all outgoing flows on the device.
 | 12  | 1000213 | Flow Owner                 | Local System/Flow Engineering | Local System: Flows that exist on the device, but not provisioned by FLE.<br>Flow Engineering: Flows that are provisioned by FLE.
 | 13  | 1000214 | Present                    | No/Yes                        | Indicates if the flow is present on the system or not.
 
-## Examples
+## Example connections
+### IP to IP
+Incoming:
+
+| Instance | Destination IP | Source IP  | Interface | FK to Out |
+| -------- | -------------- | ---------- | --------- | --------- |
+| X        | 239.0.0.1      | 10.1.1.2   | Eth1      |           |
+
+Outgoing:
+
+| Instance | Destination IP | Source IP  | Interface | FK to In  |
+| -------- | -------------- | ---------- | --------- | --------- |
+| Y        | 239.0.0.1      | 10.1.1.2   | Eth2      | X         |
+
+### IP to SDI
+Incoming:
+
+| Instance | Destination IP | Source IP  | Interface | FK to Out |
+| -------- | -------------- | ---------- | --------- | --------- |
+| X        | 239.0.0.1      | 10.1.1.2   | Eth1      |           |
+
+Outgoing:
+
+| Instance | Destination IP | Source IP  | Interface | FK to In  |
+| -------- | -------------- | ---------- | --------- | --------- |
+| Y        |                |            | SDI 2     | X         |
+
 ### SDI to SDI
-In:
+Incoming:
 
 | Instance | Destination IP | Source IP  | Interface | FK to Out |
 | -------- | -------------- | ---------- | --------- | --------- |
 | X        |                |            | SDI 1     | Y         |
 
-Out:
+Outgoing:
 
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
+| Instance | Destination IP | Source IP  | Interface | FK to In  |
 | -------- | -------------- | ---------- | --------- | --------- |
 | Y        |                |            | SDI 2     | X         |
 
 ### SDI to IP
-In:
+Incoming:
 
 | Instance | Destination IP | Source IP  | Interface | FK to Out |
 | -------- | -------------- | ---------- | --------- | --------- |
 | X        |                |            | SDI 1     |           |
 
-Out:
+Outgoing:
 
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
+| Instance | Destination IP | Source IP  | Interface | FK to In  |
 | -------- | -------------- | ---------- | --------- | --------- |
 | Y        | 239.0.0.1      | 10.1.1.2   | Eth2      | X         |
 
-### IP to IP
-In:
 
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
-| -------- | -------------- | ---------- | --------- | --------- |
-| X        | 239.0.0.1      | 10.1.1.2   | Eth1      |           |
-
-Out:
-
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
-| -------- | -------------- | ---------- | --------- | --------- |
-| Y        | 239.0.0.1      | 10.1.1.2   | Eth2      | X         |
-
-### IP to SDI
-In:
-
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
-| -------- | -------------- | ---------- | --------- | --------- |
-| X        | 239.0.0.1      | 10.1.1.2   | Eth1      |           |
-
-Out:
-
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
-| -------- | -------------- | ---------- | --------- | --------- |
-| Y        |                |            | SDI 2     | X         |
 
