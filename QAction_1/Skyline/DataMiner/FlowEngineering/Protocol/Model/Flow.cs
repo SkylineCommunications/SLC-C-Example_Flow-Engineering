@@ -19,11 +19,11 @@
 
         public string Instance { get; }
 
-        public string Destination { get; set; }
+        public string DestinationIP { get; set; }
 
         public int DestinationPort { get; set; }
 
-        public string Source { get; set; }
+        public string SourceIP { get; set; }
 
         public string Interface { get; set; }
 

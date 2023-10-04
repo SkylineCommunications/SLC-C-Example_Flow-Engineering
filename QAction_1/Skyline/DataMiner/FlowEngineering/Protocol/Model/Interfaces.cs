@@ -190,16 +190,16 @@
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtablerxflows, Values.Select(x => (object)x.RxFlows)),
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtablerxutilization, Values.Select(x => (object)x.RxUtilization)),
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedrxbitrate, Values.Select(x => (object)x.RxExpectedBitrate)),
-                (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedrxbitratestate, Values.Select(x => (object)x.RxExpectedBitrateStatus)),
+                (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedrxbitratestatus, Values.Select(x => (object)x.RxExpectedBitrateStatus)),
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedrxflows, Values.Select(x => (object)x.RxExpectedFlows)),
-                (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedrxflowsstate, Values.Select(x => (object)x.RxExpectedFlowsStatus)),
+                (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedrxflowsstatus, Values.Select(x => (object)x.RxExpectedFlowsStatus)),
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtabletxbitrate, Values.Select(x => (object)x.TxBitrate)),
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtabletxflows, Values.Select(x => (object)x.TxFlows)),
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtabletxutilization, Values.Select(x => (object)x.TxUtilization)),
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedtxbitrate, Values.Select(x => (object)x.TxExpectedBitrate)),
-                (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedtxbitratestate, Values.Select(x => (object)x.TxExpectedBitrateStatus)),
+                (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedtxbitratestatus, Values.Select(x => (object)x.TxExpectedBitrateStatus)),
                 (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedtxflows, Values.Select(x => (object)x.TxExpectedFlows)),
-                (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedtxflowsstate, Values.Select(x => (object)x.TxExpectedFlowsStatus)),
+                (Parameter.Fleinterfacesoverviewtable.Pid.fleinterfacesoverviewtableexpectedtxflowsstatus, Values.Select(x => (object)x.TxExpectedFlowsStatus)),
             };
         }
     }

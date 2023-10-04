@@ -567,11 +567,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000014" trending="true">
-			<Name>fleInterfacesOverviewTableExpectedRxBitrateState</Name>
-			<Description>Expected Rx Bitrate State (FLE Interfaces Overview Table)</Description>
+			<Name>fleInterfacesOverviewTableExpectedRxBitrateStatus</Name>
+			<Description>Expected Rx Bitrate Status (FLE Interfaces Overview Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Expected Rx Bitrate State.</Subtext>
+				<Subtext>Expected Rx Bitrate status.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -647,11 +647,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000016" trending="true">
-			<Name>fleInterfacesOverviewTableExpectedRxFlowsState</Name>
-			<Description>Expected Rx Flows State (FLE Interfaces Overview Table)</Description>
+			<Name>fleInterfacesOverviewTableExpectedRxFlowsStatus</Name>
+			<Description>Expected Rx Flows Status (FLE Interfaces Overview Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Expected Rx Flows State.</Subtext>
+				<Subtext>Expected Rx Flows status.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -726,11 +726,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000018" trending="true">
-			<Name>fleInterfacesOverviewTableExpectedTxBitrateState</Name>
-			<Description>Expected Tx Bitrate State (FLE Interfaces Overview Table)</Description>
+			<Name>fleInterfacesOverviewTableExpectedTxBitrateStatus</Name>
+			<Description>Expected Tx Bitrate Status (FLE Interfaces Overview Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Expected Tx Bitrate State.</Subtext>
+				<Subtext>Expected Tx Bitrate status.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -806,11 +806,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000020" trending="true">
-			<Name>fleInterfacesOverviewTableExpectedTxFlowsState</Name>
-			<Description>Expected Tx Flows State (FLE Interfaces Overview Table)</Description>
+			<Name>fleInterfacesOverviewTableExpectedTxFlowsStatus</Name>
+			<Description>Expected Tx Flows Status (FLE Interfaces Overview Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Expected Tx Flows State.</Subtext>
+				<Subtext>Expected Tx Flows status.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -937,11 +937,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000102" trending="false">
-			<Name>fleIncomingFlowsTableDestination</Name>
-			<Description>Destination (FLE Incoming Flows Table)</Description>
+			<Name>fleIncomingFlowsTableDestinationIp</Name>
+			<Description>Destination IP (FLE Incoming Flows Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Destination.</Subtext>
+				<Subtext>Destination IP.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -996,11 +996,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000104" trending="false">
-			<Name>fleIncomingFlowsTableSource</Name>
-			<Description>Source (FLE Incoming Flows Table)</Description>
+			<Name>fleIncomingFlowsTableSourceIp</Name>
+			<Description>Source IP (FLE Incoming Flows Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Source.</Subtext>
+				<Subtext>Source IP.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -1177,11 +1177,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000109" trending="true">
-			<Name>fleIncomingFlowsTableExpectedRxBitrateState</Name>
-			<Description>Expected Rx Bitrate State (FLE Incoming Flows Table)</Description>
+			<Name>fleIncomingFlowsTableExpectedRxBitrateStatus</Name>
+			<Description>Expected Rx Bitrate Status (FLE Incoming Flows Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Expected Rx Bitrate State.</Subtext>
+				<Subtext>Expected Rx Bitrate status.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -1418,11 +1418,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000202" trending="false">
-			<Name>fleOutgoingFlowsTableDestination</Name>
-			<Description>Destination (FLE Outgoing Flows Table)</Description>
+			<Name>fleOutgoingFlowsTableDestinationIp</Name>
+			<Description>Destination IP (FLE Outgoing Flows Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Destination.</Subtext>
+				<Subtext>Destination IP.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -1477,11 +1477,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000204" trending="false">
-			<Name>fleOutgoingFlowsTableSource</Name>
-			<Description>Source (FLE Outgoing Flows Table)</Description>
+			<Name>fleOutgoingFlowsTableSourceIp</Name>
+			<Description>Source IP (FLE Outgoing Flows Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Source.</Subtext>
+				<Subtext>Source IP.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
@@ -1658,11 +1658,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000209" trending="true">
-			<Name>fleOutgoingFlowsTableExpectedTxBitrateState</Name>
-			<Description>Expected Tx Bitrate State (FLE Outgoing Flows Table)</Description>
+			<Name>fleOutgoingFlowsTableExpectedTxBitrateStatus</Name>
+			<Description>Expected Tx Bitrate Status (FLE Outgoing Flows Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Expected Tx Bitrate State.</Subtext>
+				<Subtext>Expected Tx Bitrate status.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>
