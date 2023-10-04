@@ -11,7 +11,7 @@ Example DataMiner connector that demonstrates how to support generic flow engine
 
 ### Skyline.DataMiner.FlowEngineering.Protocol namespace
 
-[Link to code](../QAction_1/Skyline/DataMiner/FlowEngineering/Protocol)
+[Link to code](QAction_1/Skyline/DataMiner/FlowEngineering/Protocol)
 
 ### FLE Interfaces table
 
@@ -23,7 +23,7 @@ todo
 
 ### Process InterApp messages
 
-See [QAction 9000000](../QAction_9000000/QAction_9000000.cs)
+See [QAction 9000000](QAction_9000000/QAction_9000000.cs)
 
 ## Parameters
 
