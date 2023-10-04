@@ -3,8 +3,27 @@
 Example DataMiner connector that demonstrates how to support generic flow engineering tables via InterApp messages.
 
 ## Implementation
+### Protocol.xml
 
+ - Copy tables 1000000, 1000100 and 1000200
+ - Copy relations
+ - Copy QAction 1000000 (including code)
 
+### Skyline.DataMiner.FlowEngineering.Protocol namespace
+
+[Link to code](../QAction_1/Skyline/DataMiner/FlowEngineering/Protocol)
+
+### FLE Interfaces table
+
+todo
+
+### Incoming and Outgoing Flows table
+
+todo
+
+### Process InterApp messages
+
+See [QAction 9000000](../QAction_9000000/QAction_9000000.cs)
 
 ## Parameters
 
