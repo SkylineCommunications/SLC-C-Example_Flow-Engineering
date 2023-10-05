@@ -28,7 +28,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FF6F0721-4F4C-492E-A541-C9D2C7AA62A2}"
 	ProjectSection(SolutionItems) = preProject
 		protocol.xml = protocol.xml
-		readme.md = readme.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B8323557-504C-440A-9B1A-E5FB50DCF3D4}"
