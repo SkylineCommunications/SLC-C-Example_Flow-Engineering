@@ -178,18 +178,18 @@ foreach (var outFlow in addedFlows.OfType<TxFlow>())
 ```mermaid
 flowchart LR
 A[No row]
-B[Flow Engineering<br>Present=No]
-C[Flow Engineering<br>Present=Yes]
-D[Local System<br>Present=Yes]
+B[Owner=Flow Engineering<br>Present=No]
+C[Owner=Flow Engineering<br>Present=Yes]
+D[Owner=Local System<br>Present=Yes]
 
 A -->|Added by FLE| B
+A -->|Detected| D
 B -->|Removed by FLE| A
 B -->|Detected| C
 C -->|Not detected| B
-D -->|Added by FLE| C
-A -->|Detected| D
-D -->|Not detected| A
 C -->|Removed by FLE| D
+D -->|Added by FLE| C
+D -->|Not detected| A
 ```
 
 ## Parameters
