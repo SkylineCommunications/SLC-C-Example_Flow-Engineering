@@ -50,6 +50,7 @@ flowEngineering.OutgoingFlows.UpdateTable(protocol);
 
 The `FLE Interfaces Overview Table` lists all interfaces that are eligible for flow engineering.
 
+Example code:
 ```csharp
 var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
 var dcfInterfaceHelper = DcfInterfaceHelper.Create(protocol);
@@ -93,6 +94,24 @@ var dcfInterfaceID = dcfIntf.ID;
 
 ### Incoming and Outgoing Flows table
 
+Add as minimum:
+ - IP
+	- Transport Type
+	- Destination IP
+	- Destination Port (when available)
+	- Source IP
+	- Interface
+ - SDI/ASI
+	- Transport Type
+	- Interface
+
+Where possible also add FKs:
+ - From incoming flow to outgoing flows (1-1 or 1-N relation)
+ - From outgoing flow to incoming flows (N-1 relation)
+
+Also see [example connections](#example-connections).
+
+Example code:
 ```csharp
 var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
 var newFlows = new List<Flow>();
@@ -152,6 +171,25 @@ foreach (var outFlow in addedFlows.OfType<TxFlow>())
 {
 	outFlow.ForeignKeyIncoming = $"{outFlow.SourceIP}/{outFlow.DestinationIP}";
 }
+```
+
+### Flow lifecycle
+
+```mermaid
+flowchart LR
+A[No row]
+B[Flow Engineering<br>Present=No]
+C[Flow Engineering<br>Present=Yes]
+D[Local System<br>Present=Yes]
+
+A -->|Added by FLE| B
+B -->|Removed by FLE| A
+B -->|Detected| C
+C -->|Not detected| B
+D -->|Added by FLE| C
+A -->|Detected| D
+D -->|Not detected| A
+C -->|Removed by FLE| D
 ```
 
 ## Parameters
