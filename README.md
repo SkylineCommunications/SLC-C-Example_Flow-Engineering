@@ -192,6 +192,8 @@ D -->|Added by FLE| C
 D -->|Not detected| A
 ```
 
+> detected = flow detected on the device by the connector
+
 ## Parameters
 
 ### FLE Interfaces Overview Table
