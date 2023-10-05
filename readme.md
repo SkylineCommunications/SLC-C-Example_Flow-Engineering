@@ -1,6 +1,12 @@
 # Flow Engineering Connector Example
 
-Example DataMiner connector that demonstrates how to support generic flow engineering tables via InterApp messages.
+Example DataMiner connector that demonstrates how to support generic flow engineering (FLE) tables via InterApp messages.
+
+The objective is to create a mediation layer using generic tables. 
+This allows to track which incoming and outgoing flows are passing through an element in a standardized way.
+The tables are mostly populated with data that is coming from the device, but also extended with metadata from flow engineering itself.
+Flows can be multicast streams, SDI or ASI connections, and more.
+These tables are used by the MediaOps solution to show the 'as-is' path, which represents the actual route a specific signal takes through the devices.
 
 ## Implementation
 ### Protocol.xml
@@ -11,19 +17,142 @@ Example DataMiner connector that demonstrates how to support generic flow engine
 
 ### Skyline.DataMiner.FlowEngineering.Protocol namespace
 
+The `Skyline.DataMiner.FlowEngineering.Protocol` namespace contains useful classes and methods that assist developers to fill in the FLE tables in an object oriented way.
+
 [Link to code](QAction_1/Skyline/DataMiner/FlowEngineering/Protocol)
+
+To get access to the main 'manager' object call the `FlowEngineeringManager.GetInstance(protocol)` method. The resulting object is the main entry point of the helper classes.
+```csharp
+var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
+```
+
+Use properties and lists to add/update/remove data in the object structure:
+```csharp
+flowEngineering.Interfaces.Add(new Interface("...") { ... });
+flowEngineering.Interfaces["10"].AdminStatus = InterfaceAdminStatus.Up;
+
+flowEngineering.IncomingFlows.Add(new RxFlow("...") { ... });
+flowEngineering.OutgoingFlows.Add(new TxFlow("...") { ... });
+...
+```
+
+After adapting properties in the objects, the tables can be updates using the following methods:
+```csharp
+flowEngineering.Interfaces.UpdateTable(protocol);
+flowEngineering.IncomingFlows.UpdateTable(protocol);
+flowEngineering.OutgoingFlows.UpdateTable(protocol);
+```
+
+> **Note**
+> Data is being cached in the SLScripting process. To ensure that all old data is cleared, it's recommended to call `FlowEngineeringManagerInstances.CreateNewInstance(protocol)` after startup.
 
 ### FLE Interfaces table
 
-todo
+The `FLE Interfaces Overview Table` lists all interfaces that are eligible for flow engineering.
+
+```csharp
+var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
+var dcfInterfaceHelper = DcfInterfaceHelper.Create(protocol);
+var newInterfaces = new List<Interface>();
+
+foreach (var ifConfig in interfacesConfig)
+{
+	var ifIndex = Convert.ToString(ifConfig.InterfaceNumber);
+
+	if (!flowEngineering.Interfaces.TryGetValue(ifIndex, out var intf))
+		intf = new Interface(ifIndex);
+
+	intf.Description = $"Ethernet{ifIndex}";
+	intf.DisplayKey = $"Ethernet{ifIndex}";
+	intf.Type = InterfaceType.Ethernet;
+	intf.AdminStatus = InterfaceAdminStatus.Down;
+	intf.OperationalStatus = InterfaceOperationalStatus.Down;
+	intf.DcfInterfaceId = dcfInterfaceHelper.TryFindInterface(1, ifIndex, out var dcfIntf) ? dcfIntf.ID : -1;
+
+	newInterfaces.Add(intf);
+}
+
+flowEngineering.Interfaces.ReplaceInterfaces(newInterfaces);
+flowEngineering.Interfaces.UpdateTable(protocol);
+```
+
+> [!NOTE]
+> Some columns are automatically calculated and don't need to be filled in:
+>  - Rx/Tx Flows
+>  - Rx/Tx Expected Flows
+>  - Rx/Tx Expected Bitrate
+
+The `DCF Interface ID` column is important in order to be able to follow the as-is path. To obtain the the DCF interface ID based on `parameter group` and `index`, the following helper method can be used.
+It's advised to cache the `dcfInterfaceHelper` variable when being called multiple times in a loop.
+
+```csharp
+var dcfInterfaceHelper = DcfInterfaceHelper.Create(protocol);
+dcfInterfaceHelper.TryFindInterface(1 /* parameter group */, interfaceIndex, out var dcfIntf);
+var dcfInterfaceID = dcfIntf.ID;
+```
 
 ### Incoming and Outgoing Flows table
 
-todo
+```csharp
+var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
+var newFlows = new List<Flow>();
+
+// handle current flows
+foreach (var mrnh in multicastRouteNextHops)
+{
+	var instance = String.Join("/", mrnh.SourceAddress, mrnh.GroupAddress, mrnh.InterfaceIndex);
+
+	if (!flowEngineering.OutgoingFlows.TryGetValue(instance, out var flow))
+	{
+		// new flow
+		flow = new TxFlow(instance)
+		{
+			TransportType = FlowTransportType.IP,
+			FlowOwner = FlowOwner.LocalSystem,
+			Label = mrnh.Label,
+			DestinationIP = mrnh.GroupAddress,
+			DestinationPort = -1,
+			SourceIP = mrnh.SourceAddress,
+			Interface = mrnh.InterfaceIndex,
+			ForeignKeyIncoming = String.Join("/", mrnh.GroupAddress, mrnh.SourceAddress),
+		};
+
+		flowEngineering.OutgoingFlows.Add(flow);
+	}
+
+	flow.Bitrate = mrnh.BitrateActual;
+	flow.IsPresent = true;
+
+	newFlows.Add(flow);
+}
+
+// handle old flows
+foreach (var flow in flowEngineering.OutgoingFlows.Values.Except(existingFlows).ToList())
+{
+	if (flow.FlowOwner == FlowOwner.FlowEngineering)
+		flow.IsPresent = false;
+	else
+		flowEngineering.OutgoingFlows.Remove(flow.Instance);
+}
+
+// update tables
+flowEngineering.UpdateInterfaceAndOutgoingFlowsTables(protocol);
+```
 
 ### Process InterApp messages
 
 See [QAction 9000000](QAction_9000000/QAction_9000000.cs)
+
+```csharp
+var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
+var (addedFlows, _) = flowEngineering.HandleInterAppMessage(protocol, Message, ignoreDestinationPort: true);
+
+// link outgoing flows with incoming flows
+foreach (var outFlow in addedFlows.OfType<TxFlow>())
+{
+	outFlow.ForeignKeyIncoming = $"{outFlow.SourceIP}/{outFlow.DestinationIP}";
+}
+```
 
 ## Parameters
 
@@ -152,6 +281,5 @@ Outgoing:
 | Instance | Destination IP | Source IP  | Interface | FK to In  |
 | -------- | -------------- | ---------- | --------- | --------- |
 | Y        | 239.0.0.1      | 10.1.1.2   | Eth2      | X         |
-
 
 
