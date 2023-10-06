@@ -8,8 +8,6 @@
 	using Skyline.DataMiner.FlowEngineering.Protocol;
 	using Skyline.DataMiner.Scripting;
 
-	using FlowProvisioning = Skyline.DataMiner.CommunityLibrary.FlowProvisioning;
-
 	public class TxFlows : Flows<TxFlow>
 	{
 		public TxFlows(FlowEngineeringManager manager) : base(manager)
@@ -32,7 +30,7 @@
 			return flow;
 		}
 
-		public override TxFlow RegisterFlowEngineeringFlow(FlowProvisioning.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
+		public override TxFlow RegisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
 		{
 			if (flowInfo == null)
 			{
@@ -69,7 +67,7 @@
 			return flow;
 		}
 
-		public override TxFlow UnregisterFlowEngineeringFlow(FlowProvisioning.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
+		public override TxFlow UnregisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
 		{
 			if (flowInfo == null)
 			{

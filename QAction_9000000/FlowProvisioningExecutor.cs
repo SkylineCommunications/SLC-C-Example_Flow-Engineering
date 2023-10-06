@@ -1,9 +1,9 @@
 ﻿namespace QAction_9000000
 {
-	using Skyline.DataMiner.CommunityLibrary.FlowProvisioning.Info;
+	using Skyline.DataMiner.ConnectorAPI.FlowEngineering.Info;
+	using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
+	using Skyline.DataMiner.Core.InterAppCalls.Common.MessageExecution;
 	using Skyline.DataMiner.FlowEngineering.Protocol;
-	using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
-	using Skyline.DataMiner.Library.Common.InterAppCalls.MessageExecution;
 	using Skyline.DataMiner.Scripting;
 
 	public class FlowProvisioningExecutor : SimpleMessageExecutor<FlowInfoMessage>

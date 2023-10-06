@@ -3,8 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 
-	using Skyline.DataMiner.CommunityLibrary.FlowProvisioning.Enums;
-	using Skyline.DataMiner.CommunityLibrary.FlowProvisioning.Info;
+	using Skyline.DataMiner.ConnectorAPI.FlowEngineering.Enums;
 	using Skyline.DataMiner.FlowEngineering.Protocol.Model;
 	using Skyline.DataMiner.Scripting;
 
@@ -51,7 +50,7 @@
 			OutgoingFlows.UpdateTable(protocol, includeStatistics);
 		}
 
-		public (ICollection<Flow> addedFlows, ICollection<Flow> removedFlows) HandleInterAppMessage(SLProtocolExt protocol, FlowInfoMessage message, bool ignoreDestinationPort = false)
+		public (ICollection<Flow> addedFlows, ICollection<Flow> removedFlows) HandleInterAppMessage(SLProtocolExt protocol, ConnectorAPI.FlowEngineering.Info.FlowInfoMessage message, bool ignoreDestinationPort = false)
 		{
 			if (protocol == null)
 			{

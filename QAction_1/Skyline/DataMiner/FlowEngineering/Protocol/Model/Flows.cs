@@ -6,8 +6,6 @@
 	using Skyline.DataMiner.FlowEngineering.Protocol;
 	using Skyline.DataMiner.Scripting;
 
-	using FlowProvisioning = Skyline.DataMiner.CommunityLibrary.FlowProvisioning;
-
 	public abstract class Flows<T> : Dictionary<string, T>
 		where T : Flow
 	{
@@ -53,8 +51,8 @@
 
 		public abstract void UpdateStatistics(SLProtocol protocol);
 
-		public abstract T RegisterFlowEngineeringFlow(FlowProvisioning.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false);
+		public abstract T RegisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false);
 
-		public abstract T UnregisterFlowEngineeringFlow(FlowProvisioning.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false);
+		public abstract T UnregisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false);
 	}
 }
