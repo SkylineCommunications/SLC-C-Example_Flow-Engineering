@@ -21,6 +21,9 @@ jobs:
      - name: Setup NuGet
        uses: NuGet/setup-nuget@v1.2.0
      
+     - name: Add NuGet source
+       run: nuget sources add -name github -source "https://nuget.pkg.github.com/SkylineCommunications/index.json" -username USERNAME -password ${{ secrets.GITHUB_TOKEN }} 
+       
      - name: Restore NuGet packages
        run: nuget restore "Skyline Example Flow Engineering.sln"
      
