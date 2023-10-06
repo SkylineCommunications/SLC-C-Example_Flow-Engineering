@@ -18,7 +18,7 @@
 
 		public TxFlow GetOrAdd(string instance)
 		{
-			if (string.IsNullOrWhiteSpace(instance))
+			if (String.IsNullOrWhiteSpace(instance))
 			{
 				throw new ArgumentException($"'{nameof(instance)}' cannot be null or whitespace.", nameof(instance));
 			}
@@ -32,7 +32,7 @@
 			return flow;
 		}
 
-		public TxFlow RegisterFlowEngineeringFlow(FlowProvisioning.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
+		public override TxFlow RegisterFlowEngineeringFlow(FlowProvisioning.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
 		{
 			if (flowInfo == null)
 			{
@@ -46,8 +46,8 @@
 			}
 
 			var instance = !ignoreDestinationPort
-				? string.Join("/", ip.SourceIp, $"{ip.DestinationIp}:{ip.DestinationPort}", flowInfo.Interface)
-				: string.Join("/", ip.SourceIp, ip.DestinationIp, flowInfo.Interface);
+				? String.Join("/", ip.SourceIp, $"{ip.DestinationIp}:{ip.DestinationPort}", flowInfo.Interface)
+				: String.Join("/", ip.SourceIp, ip.DestinationIp, flowInfo.Interface);
 
 			if (!TryGetValue(instance, out var flow))
 			{
@@ -69,7 +69,7 @@
 			return flow;
 		}
 
-		public TxFlow UnregisterFlowEngineeringFlow(FlowProvisioning.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
+		public override TxFlow UnregisterFlowEngineeringFlow(FlowProvisioning.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
 		{
 			if (flowInfo == null)
 			{
@@ -83,8 +83,8 @@
 			}
 
 			var instance = !ignoreDestinationPort
-				? string.Join("/", ip.SourceIp, $"{ip.DestinationIp}:{ip.DestinationPort}", flowInfo.Interface)
-				: string.Join("/", ip.SourceIp, ip.DestinationIp, flowInfo.Interface);
+				? String.Join("/", ip.SourceIp, $"{ip.DestinationIp}:{ip.DestinationPort}", flowInfo.Interface)
+				: String.Join("/", ip.SourceIp, ip.DestinationIp, flowInfo.Interface);
 
 			if (!TryGetValue(instance, out var flow))
 			{
@@ -94,7 +94,7 @@
 			if (flow.IsPresent)
 			{
 				flow.FlowOwner = FlowOwner.LocalSystem;
-				flow.LinkedFlow = string.Empty;
+				flow.LinkedFlow = String.Empty;
 				flow.ExpectedBitrate = -1;
 			}
 			else
@@ -105,7 +105,7 @@
 			return flow;
 		}
 
-		public void LoadTable(SLProtocol protocol)
+		public override void LoadTable(SLProtocol protocol)
 		{
 			var table = protocol.GetLocalElement()
 				.GetTable(Parameter.Fleoutgoingflowstable.tablePid)
@@ -167,7 +167,7 @@
 			}
 		}
 
-		public void UpdateTable(SLProtocol protocol, bool includeStatistics = true)
+		public override void UpdateTable(SLProtocol protocol, bool includeStatistics = true)
 		{
 			var columns = new List<(int Pid, IEnumerable<object> Data)>
 			{
@@ -177,8 +177,8 @@
 				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstableoutgoinginterface, Values.Select(x => x.Interface)),
 				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstablefkincoming, Values.Select(x => x.ForeignKeyIncoming)),
 				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstabletransporttype, Values.Select(x => (object)x.TransportType)),
-				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstablelabel, Values.Select(x => x.Label ?? string.Empty)),
-				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstablelinkedflow, Values.Select(x => x.LinkedFlow ?? string.Empty)),
+				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstablelabel, Values.Select(x => x.Label ?? String.Empty)),
+				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstablelinkedflow, Values.Select(x => x.LinkedFlow ?? String.Empty)),
 				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstableflowowner, Values.Select(x => (object)x.FlowOwner)),
 				(Parameter.Fleoutgoingflowstable.Pid.fleoutgoingflowstablepresent, Values.Select(x => (object)(x.IsPresent ? 1 : 0))),
 			};
@@ -195,7 +195,7 @@
 				columns.ToArray());
 		}
 
-		public void UpdateStatistics(SLProtocol protocol)
+		public override void UpdateStatistics(SLProtocol protocol)
 		{
 			protocol.SetColumns(
 				Parameter.Fleoutgoingflowstable.tablePid,

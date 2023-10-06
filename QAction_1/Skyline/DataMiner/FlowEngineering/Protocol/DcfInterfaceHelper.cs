@@ -58,7 +58,7 @@
                 if (parts.Length < 2)
                     continue;
 
-                if (Convert.ToInt32(parts[0]) == groupId && string.Equals(parts[1], dynamicPk))
+                if (Convert.ToInt32(parts[0]) == groupId && String.Equals(parts[1], dynamicPk))
                 {
                     dcfInterface = intf;
                     return true;

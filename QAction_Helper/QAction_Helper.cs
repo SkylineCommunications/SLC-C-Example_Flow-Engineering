@@ -341,6 +341,11 @@ public static class Parameter
 			public const int fleincomingflowstablepresent = 1000114;
 			public class Write
 			{
+				/// <summary>PID: 1000165 | Type: write</summary>
+				[EditorBrowsable(EditorBrowsableState.Never)]
+				public const int fleincomingflowstabledelete_1000165 = 1000165;
+				/// <summary>PID: 1000165 | Type: write</summary>
+				public const int fleincomingflowstabledelete = 1000165;
 			}
 		}
 		public class Idx
@@ -499,6 +504,11 @@ public static class Parameter
 			public const int fleoutgoingflowstablepresent = 1000214;
 			public class Write
 			{
+				/// <summary>PID: 1000265 | Type: write</summary>
+				[EditorBrowsable(EditorBrowsableState.Never)]
+				public const int fleoutgoingflowstabledelete_1000265 = 1000265;
+				/// <summary>PID: 1000265 | Type: write</summary>
+				public const int fleoutgoingflowstabledelete = 1000265;
 			}
 		}
 		public class Idx
@@ -580,8 +590,12 @@ public class WriteParameters
 {
 	/// <summary>PID: 1000158  | Type: write</summary>
 	public System.Object Fleincomingflowstableexpectedrxbitrate {get { return Protocol.GetParameter(1000158); }set { Protocol.SetParameter(1000158, value); }}
+	/// <summary>PID: 1000165  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleincomingflowstabledelete {get { return Protocol.GetParameter(1000165); }set { Protocol.SetParameter(1000165, value); }}
 	/// <summary>PID: 1000258  | Type: write</summary>
 	public System.Object Fleoutgoingflowstableexpectedtxbitrate {get { return Protocol.GetParameter(1000258); }set { Protocol.SetParameter(1000258, value); }}
+	/// <summary>PID: 1000265  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleoutgoingflowstabledelete {get { return Protocol.GetParameter(1000265); }set { Protocol.SetParameter(1000265, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -668,6 +682,8 @@ public interface SLProtocolExt : SLProtocol
 	object Fleincomingflowstablepresent_1000114 { get; set; }
 	object Fleincomingflowstablepresent { get; set; }
 	object Fleincomingflowstableexpectedrxbitrate_1000158 { get; set; }
+	object Fleincomingflowstabledelete_1000165 { get; set; }
+	object Fleincomingflowstabledelete { get; set; }
 	object Fleoutgoingflowstableinstance_1000201 { get; set; }
 	object Fleoutgoingflowstableinstance { get; set; }
 	object Fleoutgoingflowstabledestinationip_1000202 { get; set; }
@@ -697,6 +713,8 @@ public interface SLProtocolExt : SLProtocol
 	object Fleoutgoingflowstablepresent_1000214 { get; set; }
 	object Fleoutgoingflowstablepresent { get; set; }
 	object Fleoutgoingflowstableexpectedtxbitrate_1000258 { get; set; }
+	object Fleoutgoingflowstabledelete_1000265 { get; set; }
+	object Fleoutgoingflowstabledelete { get; set; }
 	object Clp_interapp_receive_9000000 { get; set; }
 	object Clp_interapp_receive { get; set; }
 	object Clp_interapp_return_9000001 { get; set; }
@@ -891,6 +909,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	/// <summary>PID: 1000158  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Fleincomingflowstableexpectedrxbitrate_1000158 {get { return GetParameter(1000158); }set { SetParameter(1000158, value); }}
+	/// <summary>PID: 1000165  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleincomingflowstabledelete_1000165 {get { return GetParameter(1000165); }set { SetParameter(1000165, value); }}
+	/// <summary>PID: 1000165  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleincomingflowstabledelete {get { return Write.Fleincomingflowstabledelete; }set { Write.Fleincomingflowstabledelete = value; }}
 	/// <summary>PID: 1000201  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Fleoutgoingflowstableinstance_1000201 {get { return GetParameter(1000201); }set { SetParameter(1000201, value); }}
@@ -964,6 +986,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	/// <summary>PID: 1000258  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Fleoutgoingflowstableexpectedtxbitrate_1000258 {get { return GetParameter(1000258); }set { SetParameter(1000258, value); }}
+	/// <summary>PID: 1000265  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleoutgoingflowstabledelete_1000265 {get { return GetParameter(1000265); }set { SetParameter(1000265, value); }}
+	/// <summary>PID: 1000265  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleoutgoingflowstabledelete {get { return Write.Fleoutgoingflowstabledelete; }set { Write.Fleoutgoingflowstabledelete = value; }}
 	/// <summary>PID: 9000000  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Clp_interapp_receive_9000000 {get { return GetParameter(9000000); }set { SetParameter(9000000, value); }}
@@ -1192,8 +1218,12 @@ public class FleincomingflowstableQActionRow : QActionTableRow
 	public System.Object Fleincomingflowstablepresent_1000114 { get { if (base.Columns.ContainsKey(13)) { return base.Columns[13]; } else { return null; } } set { if (base.Columns.ContainsKey(13)) { base.Columns[13] = value; } else { base.Columns.Add(13, value); } } }
 	/// <summary>PID: 1000114 | Type: read</summary>
 	public System.Object Fleincomingflowstablepresent { get { if (base.Columns.ContainsKey(13)) { return base.Columns[13]; } else { return null; } } set { if (base.Columns.ContainsKey(13)) { base.Columns[13] = value; } else { base.Columns.Add(13, value); } } }
-	public FleincomingflowstableQActionRow() : base(0, 14) { }
-	public FleincomingflowstableQActionRow(System.Object[] oRow) : base(0, 14, oRow) { }
+	/// <summary>PID: 1000165 | Type: write</summary>
+	public System.Object Fleincomingflowstabledelete_1000165 { get { if (base.Columns.ContainsKey(14)) { return base.Columns[14]; } else { return null; } } set { if (base.Columns.ContainsKey(14)) { base.Columns[14] = value; } else { base.Columns.Add(14, value); } } }
+	/// <summary>PID: 1000165 | Type: write</summary>
+	public System.Object Fleincomingflowstabledelete { get { if (base.Columns.ContainsKey(14)) { return base.Columns[14]; } else { return null; } } set { if (base.Columns.ContainsKey(14)) { base.Columns[14] = value; } else { base.Columns.Add(14, value); } } }
+	public FleincomingflowstableQActionRow() : base(0, 15) { }
+	public FleincomingflowstableQActionRow(System.Object[] oRow) : base(0, 15, oRow) { }
 	public static implicit operator FleincomingflowstableQActionRow(System.Object[] source) { return new FleincomingflowstableQActionRow(source); }
 	public static implicit operator System.Object[](FleincomingflowstableQActionRow source) { return source.ToObjectArray(); }
 	public System.Object[] GetParentRowFleinterfacesoverviewtableFleincomingflowstableincominginterface(SLProtocol protocol) { return (System.Object[])protocol.GetRow(1000000, (System.String)Fleincomingflowstableincominginterface); }
@@ -1273,8 +1303,12 @@ public class FleoutgoingflowstableQActionRow : QActionTableRow
 	public System.Object Fleoutgoingflowstablepresent_1000214 { get { if (base.Columns.ContainsKey(13)) { return base.Columns[13]; } else { return null; } } set { if (base.Columns.ContainsKey(13)) { base.Columns[13] = value; } else { base.Columns.Add(13, value); } } }
 	/// <summary>PID: 1000214 | Type: read</summary>
 	public System.Object Fleoutgoingflowstablepresent { get { if (base.Columns.ContainsKey(13)) { return base.Columns[13]; } else { return null; } } set { if (base.Columns.ContainsKey(13)) { base.Columns[13] = value; } else { base.Columns.Add(13, value); } } }
-	public FleoutgoingflowstableQActionRow() : base(0, 14) { }
-	public FleoutgoingflowstableQActionRow(System.Object[] oRow) : base(0, 14, oRow) { }
+	/// <summary>PID: 1000265 | Type: write</summary>
+	public System.Object Fleoutgoingflowstabledelete_1000265 { get { if (base.Columns.ContainsKey(14)) { return base.Columns[14]; } else { return null; } } set { if (base.Columns.ContainsKey(14)) { base.Columns[14] = value; } else { base.Columns.Add(14, value); } } }
+	/// <summary>PID: 1000265 | Type: write</summary>
+	public System.Object Fleoutgoingflowstabledelete { get { if (base.Columns.ContainsKey(14)) { return base.Columns[14]; } else { return null; } } set { if (base.Columns.ContainsKey(14)) { base.Columns[14] = value; } else { base.Columns.Add(14, value); } } }
+	public FleoutgoingflowstableQActionRow() : base(0, 15) { }
+	public FleoutgoingflowstableQActionRow(System.Object[] oRow) : base(0, 15, oRow) { }
 	public static implicit operator FleoutgoingflowstableQActionRow(System.Object[] source) { return new FleoutgoingflowstableQActionRow(source); }
 	public static implicit operator System.Object[](FleoutgoingflowstableQActionRow source) { return source.ToObjectArray(); }
 	public System.Object[] GetParentRowFleinterfacesoverviewtableFleoutgoingflowstableoutgoinginterface(SLProtocol protocol) { return (System.Object[])protocol.GetRow(1000000, (System.String)Fleoutgoingflowstableoutgoinginterface); }

@@ -1,6 +1,7 @@
 using System;
 
 using Skyline.DataMiner.FlowEngineering.Protocol;
+using Skyline.DataMiner.FlowEngineering.Protocol.Model;
 using Skyline.DataMiner.Scripting;
 
 /// <summary>
@@ -20,15 +21,21 @@ public static class QAction
 			var key = protocol.RowKey();
 			var value = protocol.GetParameter(trigger);
 
-			var expectedBitrate = (double)value;
+			var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
 
 			switch (trigger)
 			{
 				case Parameter.Write.fleincomingflowstableexpectedrxbitrate:
-					UpdateExpectedRxBitrate(protocol, key, expectedBitrate);
+					UpdateExpectedBitrate(protocol, flowEngineering, flowEngineering.IncomingFlows, key, (double)value);
+					break;
+				case Parameter.Fleincomingflowstable.Pid.Write.fleincomingflowstabledelete:
+					DeleteFlow(protocol, flowEngineering, flowEngineering.IncomingFlows, key);
 					break;
 				case Parameter.Write.fleoutgoingflowstableexpectedtxbitrate:
-					UpdateExpectedTxBitrate(protocol, key, expectedBitrate);
+					UpdateExpectedBitrate(protocol, flowEngineering, flowEngineering.OutgoingFlows, key, (double)value);
+					break;
+				case Parameter.Fleoutgoingflowstable.Pid.Write.fleoutgoingflowstabledelete:
+					DeleteFlow(protocol, flowEngineering, flowEngineering.OutgoingFlows, key);
 					break;
 				default:
 					throw new InvalidOperationException($"Invalid trigger: {trigger}");
@@ -40,29 +47,29 @@ public static class QAction
 		}
 	}
 
-	private static void UpdateExpectedRxBitrate(SLProtocolExt protocol, string key, double expectedBitrate)
+	private static void UpdateExpectedBitrate<T>(SLProtocolExt protocol, FlowEngineeringManager flowEngineering, Flows<T> flows, string key, double expectedBitrate)
+		where T : Flow
 	{
-		var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
-
-		if (flowEngineering.IncomingFlows.TryGetValue(key, out var flow))
+		if (!flows.TryGetValue(key, out var flow))
 		{
-			flow.ExpectedBitrate = expectedBitrate;
+			return;
 		}
 
-		flowEngineering.IncomingFlows.UpdateStatistics(protocol);
+		flow.ExpectedBitrate = expectedBitrate;
+
+		flows.UpdateStatistics(protocol);
 		flowEngineering.Interfaces.UpdateStatistics(protocol);
 	}
 
-	private static void UpdateExpectedTxBitrate(SLProtocolExt protocol, string key, double expectedBitrate)
+	private static void DeleteFlow<T>(SLProtocolExt protocol, FlowEngineeringManager flowEngineering, Flows<T> flows, string key)
+		where T : Flow
 	{
-		var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
-
-		if (flowEngineering.OutgoingFlows.TryGetValue(key, out var flow))
+		if (!flows.Remove(key))
 		{
-			flow.ExpectedBitrate = expectedBitrate;
+			return;
 		}
 
-		flowEngineering.OutgoingFlows.UpdateStatistics(protocol);
+		flows.UpdateTable(protocol);
 		flowEngineering.Interfaces.UpdateStatistics(protocol);
 	}
 }

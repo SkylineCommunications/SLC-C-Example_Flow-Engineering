@@ -10,7 +10,7 @@
     {
         public Interface(string index)
         {
-            if (string.IsNullOrWhiteSpace(index))
+            if (String.IsNullOrWhiteSpace(index))
             {
                 throw new ArgumentException($"'{nameof(index)}' cannot be null or whitespace.", nameof(index));
             }

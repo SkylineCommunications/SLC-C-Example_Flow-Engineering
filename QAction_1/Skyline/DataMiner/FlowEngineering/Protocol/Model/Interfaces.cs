@@ -29,7 +29,7 @@
 
         public Interface GetOrAdd(string index)
         {
-            if (string.IsNullOrWhiteSpace(index))
+            if (String.IsNullOrWhiteSpace(index))
             {
                 throw new ArgumentException($"'{nameof(index)}' cannot be null or whitespace.", nameof(index));
             }
@@ -64,7 +64,7 @@
 
         public bool TryGetByDescription(string description, out Interface intf)
         {
-            intf = Values.FirstOrDefault(x => string.Equals(x.Description, description));
+            intf = Values.FirstOrDefault(x => String.Equals(x.Description, description));
             return intf != null;
         }
 

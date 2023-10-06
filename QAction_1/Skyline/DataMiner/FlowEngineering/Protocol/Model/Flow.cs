@@ -9,7 +9,7 @@
     {
         protected Flow(string instance)
         {
-            if (string.IsNullOrWhiteSpace(instance))
+            if (String.IsNullOrWhiteSpace(instance))
             {
                 throw new ArgumentException($"'{nameof(instance)}' cannot be null or whitespace.", nameof(instance));
             }
