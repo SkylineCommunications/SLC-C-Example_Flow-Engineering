@@ -273,53 +273,53 @@ List of all outgoing flows on the device.
 ### IP to IP
 Incoming:
 
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
-| -------- | -------------- | ---------- | --------- | --------- |
-| X        | 239.0.0.1      | 10.1.1.2   | Eth1      |           |
+| Instance | Destination IP | Source IP  | Interface | Transport Type | FK to Out |
+| -------- | -------------- | ---------- | --------- | -------------- | --------- |
+| X        | 239.0.0.1      | 10.1.1.2   | Eth1      | IP             |           |
 
 Outgoing:
 
-| Instance | Destination IP | Source IP  | Interface | FK to In  |
-| -------- | -------------- | ---------- | --------- | --------- |
-| Y        | 239.0.0.1      | 10.1.1.2   | Eth2      | X         |
+| Instance | Destination IP | Source IP  | Interface | Transport Type | FK to In  |
+| -------- | -------------- | ---------- | --------- | -------------- | --------- |
+| Y        | 239.0.0.1      | 10.1.1.2   | Eth2      | IP             | X         |
 
 ### IP to SDI
 Incoming:
 
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
-| -------- | -------------- | ---------- | --------- | --------- |
-| X        | 239.0.0.1      | 10.1.1.2   | Eth1      |           |
+| Instance | Destination IP | Source IP  | Interface | Transport Type | FK to Out |
+| -------- | -------------- | ---------- | --------- | -------------- | --------- |
+| X        | 239.0.0.1      | 10.1.1.2   | Eth1      | IP             |           |
 
 Outgoing:
 
-| Instance | Destination IP | Source IP  | Interface | FK to In  |
-| -------- | -------------- | ---------- | --------- | --------- |
-| Y        |                |            | SDI 2     | X         |
+| Instance | Destination IP | Source IP  | Interface | Transport Type | FK to In  |
+| -------- | -------------- | ---------- | --------- | -------------- | --------- |
+| Y        |                |            | SDI 2     | SDI            | X         |
 
 ### SDI to SDI
 Incoming:
 
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
-| -------- | -------------- | ---------- | --------- | --------- |
-| X        |                |            | SDI 1     | Y         |
+| Instance | Destination IP | Source IP  | Interface | Transport Type | FK to Out |
+| -------- | -------------- | ---------- | --------- | -------------- | --------- |
+| X        |                |            | SDI 1     | SDI            | Y         |
 
 Outgoing:
 
-| Instance | Destination IP | Source IP  | Interface | FK to In  |
-| -------- | -------------- | ---------- | --------- | --------- |
-| Y        |                |            | SDI 2     | X         |
+| Instance | Destination IP | Source IP  | Interface | Transport Type | FK to In  |
+| -------- | -------------- | ---------- | --------- | -------------- | --------- |
+| Y        |                |            | SDI 2     | SDI            | X         |
 
 ### SDI to IP
 Incoming:
 
-| Instance | Destination IP | Source IP  | Interface | FK to Out |
-| -------- | -------------- | ---------- | --------- | --------- |
-| X        |                |            | SDI 1     |           |
+| Instance | Destination IP | Source IP  | Interface | Transport Type | FK to Out |
+| -------- | -------------- | ---------- | --------- | -------------- | --------- |
+| X        |                |            | SDI 1     | SDI            |           |
 
 Outgoing:
 
-| Instance | Destination IP | Source IP  | Interface | FK to In  |
-| -------- | -------------- | ---------- | --------- | --------- |
-| Y        | 239.0.0.1      | 10.1.1.2   | Eth2      | X         |
+| Instance | Destination IP | Source IP  | Interface | Transport Type | FK to In  |
+| -------- | -------------- | ---------- | --------- | -------------- | --------- |
+| Y        | 239.0.0.1      | 10.1.1.2   | Eth2      | IP             | X         |
 
 
