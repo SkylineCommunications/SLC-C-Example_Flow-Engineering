@@ -119,11 +119,12 @@
 						Parameter.Fleoutgoingflowstable.Idx.fleoutgoingflowstabletxbitrate,
 						Parameter.Fleoutgoingflowstable.Idx.fleoutgoingflowstableexpectedtxbitrate,
 						Parameter.Fleoutgoingflowstable.Idx.fleoutgoingflowstablelabel,
+						Parameter.Fleoutgoingflowstable.Idx.fleoutgoingflowstablefkincoming,
 						Parameter.Fleoutgoingflowstable.Idx.fleoutgoingflowstablelinkedflow,
 						Parameter.Fleoutgoingflowstable.Idx.fleoutgoingflowstableflowowner,
 						Parameter.Fleoutgoingflowstable.Idx.fleoutgoingflowstablepresent,
 					},
-					(string idx, string dest, int destPort, string source, string intf, int type, double bitrate, double expectedBitrate, string label, string linked, int owner, int present) =>
+					(string idx, string dest, int destPort, string source, string intf, int type, double bitrate, double expectedBitrate, string label, string fkIn, string linked, int owner, int present) =>
 					{
 						return new
 						{
@@ -136,6 +137,7 @@
 							Bitrate = bitrate,
 							ExpectedBitrate = expectedBitrate,
 							Label = label,
+							FkIncoming = fkIn,
 							LinkedFlow = linked,
 							FlowOwner = (FlowOwner)owner,
 							IsPresent = Convert.ToBoolean(present),
@@ -159,6 +161,7 @@
 				flow.Bitrate = row.Bitrate;
 				flow.ExpectedBitrate = row.ExpectedBitrate;
 				flow.Label = row.Label;
+				flow.ForeignKeyIncoming = row.FkIncoming;
 				flow.LinkedFlow = row.LinkedFlow;
 				flow.FlowOwner = row.FlowOwner;
 				flow.IsPresent = row.IsPresent;
