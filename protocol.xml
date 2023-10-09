@@ -1943,7 +1943,7 @@ Any inquiries can be addressed to:
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 
-		<QAction id="1000000" name="Flow Engineering Sets" encoding="csharp" triggers="1000158;1000258" row="true" />
+		<QAction id="1000000" name="Flow Engineering Sets" encoding="csharp" triggers="1000158;1000165;1000258;1000265" row="true" />
 		<QAction id="9000000" name="InterApp" encoding="csharp" triggers="9000000" />
 
 	</QActions>
