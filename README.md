@@ -6,7 +6,7 @@ The objective is to create a mediation layer using generic tables.
 This allows to track which incoming and outgoing flows are passing through an element in a standardized way.
 The tables are mostly populated with data that is coming from the device, but also extended with metadata from flow engineering itself.
 Flows can be multicast streams, SDI or ASI connections, and more.
-These tables are used by the MediaOps solution to show the 'as-is' path, which represents the actual route a specific signal takes through the devices.
+These tables are used by the MediaOps solution to show the **as-is** path, which represents the actual route a specific signal takes through the devices.
 
 ## Implementation
 ### Protocol.xml
@@ -47,7 +47,6 @@ flowEngineering.OutgoingFlows.UpdateTable(protocol);
 > Data is being cached in the SLScripting process. To ensure that all old data is cleared, it's recommended to call `FlowEngineeringManagerInstances.CreateNewInstance(protocol)` after startup.
 
 ### FLE Interfaces table
-
 The `FLE Interfaces Overview Table` lists all interfaces that are eligible for flow engineering.
 
 Example code:
@@ -93,6 +92,18 @@ var dcfInterfaceID = dcfIntf.ID;
 ```
 
 ### Incoming and Outgoing Flows table
+These tables contains information about incoming and outgoing flows on the device.
+
+ - information about the signal itself (transport type, IP address, port, ...)
+ - incoming/outgoing interface
+ - expected bitrate and comparison with actual bitrate
+ - indication if the signal is present or not
+ - ownership (local system or flow engineering)
+ - foreign keys which link incoming and outgoing flows
+ - ...
+
+> [!IMPORTANT]
+> The content of the rows in the flow tables should primarily originate from information retrieved from the device. This is crucial because the main objective is to accurately track the **as-is** path of flows.
 
 Add as minimum:
  - IP
@@ -159,6 +170,8 @@ flowEngineering.UpdateInterfaceAndOutgoingFlowsTables(protocol);
 ```
 
 ### Process InterApp messages
+#### FlowInfoMessage
+The `FlowInfoMessage` is being used to update the flow IDs and owner in the flow tables and to configure the device. The other data in these tables should be based on data that was retrieved from the device through polling. Flow configuration data should not go immediately from the interapp message into the tables (in most cases). This is important because it could be that the device did not get configured correctly (same principle as when doing a set on the device).
 
 See [QAction 9000000](QAction_9000000/QAction_9000000.cs)
 
