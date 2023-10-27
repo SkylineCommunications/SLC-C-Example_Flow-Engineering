@@ -73,7 +73,7 @@ if (message.TryExecute(protocol, protocol, messageToExecutorMapping, out Message
 #### SDP Response example
 The following example provides a preview of the SDP structure and offers insights into what we can anticipate as a response.
 ##### SDP File content
-```csharp
+```
 v=0
 o=- 3905215086 3905215086 IN IP4 10.13.1.142
 s=easy-nmos-node/sender/v1
