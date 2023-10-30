@@ -186,6 +186,9 @@ foreach (var outFlow in addedFlows.OfType<TxFlow>())
 }
 ```
 
+#### Request SDP using InterApp message
+For more information about requesting SDP file content for a specific sender using InterApp message, see [Request SDP using InterApp](<Documentation/Request SDP using InterApp.md>).
+
 ### Flow lifecycle
 
 ```mermaid
