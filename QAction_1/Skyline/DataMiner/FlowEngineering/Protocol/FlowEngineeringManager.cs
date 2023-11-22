@@ -65,38 +65,35 @@
 			var addedFlows = new List<Flow>();
 			var removedFlows = new List<Flow>();
 
-			foreach (var flowInfo in message.Flows)
+
+			Flow flow;
+
+			switch (message.ActionType)
 			{
-				Flow flow;
+				case ActionType.Create:
+					if (message.IsIncoming)
+						flow = IncomingFlows.RegisterFlowEngineeringFlow(message, ignoreDestinationPort);
+					else
+						flow = OutgoingFlows.RegisterFlowEngineeringFlow(message, ignoreDestinationPort);
 
-				switch (message.ActionType)
-				{
-					case ActionType.Create:
-					case ActionType.Update:
-						if (flowInfo.FlowDirection == FlowDirection.RX)
-							flow = IncomingFlows.RegisterFlowEngineeringFlow(flowInfo, ignoreDestinationPort);
-						else
-							flow = OutgoingFlows.RegisterFlowEngineeringFlow(flowInfo, ignoreDestinationPort);
+					if (flow != null)
+						addedFlows.Add(flow);
 
-						if (flow != null)
-							addedFlows.Add(flow);
+					break;
 
-						break;
+				case ActionType.Delete:
+					if (message.IsIncoming)
+						flow = IncomingFlows.UnregisterFlowEngineeringFlow(message, ignoreDestinationPort);
+					else
+						flow = OutgoingFlows.UnregisterFlowEngineeringFlow(message, ignoreDestinationPort);
 
-					case ActionType.Delete:
-						if (flowInfo.FlowDirection == FlowDirection.RX)
-							flow = IncomingFlows.UnregisterFlowEngineeringFlow(flowInfo, ignoreDestinationPort);
-						else
-							flow = OutgoingFlows.UnregisterFlowEngineeringFlow(flowInfo, ignoreDestinationPort);
+					if (flow != null)
+						removedFlows.Add(flow);
 
-						if (flow != null)
-							removedFlows.Add(flow);
+					break;
 
-						break;
-
-					default:
-						throw new InvalidOperationException($"Unknown action: {message.ActionType}");
-				}
+				default:
+					throw new InvalidOperationException($"Unknown action: {message.ActionType}");
 			}
 
 			UpdateTables(protocol);

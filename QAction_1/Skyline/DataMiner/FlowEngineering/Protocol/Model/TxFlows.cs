@@ -30,29 +30,29 @@
 			return flow;
 		}
 
-		public override TxFlow RegisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
+		public override TxFlow RegisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfoMessage flowInfo, bool ignoreDestinationPort = false)
 		{
 			if (flowInfo == null)
 			{
 				throw new ArgumentNullException(nameof(flowInfo));
 			}
 
-			var ip = flowInfo.FlowTransportIp;
+			var ip = flowInfo.IpConfiguration;
 			if (ip == null)
 			{
 				throw new NotSupportedException("Only IP flows are supported");
 			}
 
 			var instance = !ignoreDestinationPort
-				? String.Join("/", ip.SourceIp, $"{ip.DestinationIp}:{ip.DestinationPort}", flowInfo.Interface)
-				: String.Join("/", ip.SourceIp, ip.DestinationIp, flowInfo.Interface);
+				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}", flowInfo.OutgoingDcfDynamicLink)
+				: String.Join("/", ip.SourceIP, ip.DestinationIP, flowInfo.OutgoingDcfDynamicLink);
 
 			if (!TryGetValue(instance, out var flow))
 			{
 				flow = new TxFlow(instance)
 				{
-					SourceIP = ip.SourceIp,
-					DestinationIP = ip.DestinationIp,
+					SourceIP = ip.SourceIP,
+					DestinationIP = ip.DestinationIP,
 					DestinationPort = !ignoreDestinationPort ? Convert.ToInt32(ip.DestinationPort) : -1,
 					TransportType = FlowTransportType.IP,
 				};
@@ -60,29 +60,29 @@
 			}
 
 			flow.FlowOwner = FlowOwner.FlowEngineering;
-			flow.LinkedFlow = Convert.ToString(flowInfo.SourceFlowId);
-			flow.OutgoingInterface = flowInfo.Interface;
-			flow.ExpectedBitrate = ip.BitRate;
+			flow.LinkedFlow = Convert.ToString(flowInfo.SourceId);
+			flow.OutgoingInterface = flowInfo.OutgoingDcfDynamicLink;
+			flow.ExpectedBitrate = -1d; // todo, needs to be updated!
 
 			return flow;
 		}
 
-		public override TxFlow UnregisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
+		public override TxFlow UnregisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfoMessage flowInfo, bool ignoreDestinationPort = false)
 		{
 			if (flowInfo == null)
 			{
 				throw new ArgumentNullException(nameof(flowInfo));
 			}
 
-			var ip = flowInfo.FlowTransportIp;
+			var ip = flowInfo.IpConfiguration;
 			if (ip == null)
 			{
 				throw new NotSupportedException("Only IP flows are supported");
 			}
 
 			var instance = !ignoreDestinationPort
-				? String.Join("/", ip.SourceIp, $"{ip.DestinationIp}:{ip.DestinationPort}", flowInfo.Interface)
-				: String.Join("/", ip.SourceIp, ip.DestinationIp, flowInfo.Interface);
+				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}", flowInfo.OutgoingDcfDynamicLink)
+				: String.Join("/", ip.SourceIP, ip.DestinationIP, flowInfo.OutgoingDcfDynamicLink);
 
 			if (!TryGetValue(instance, out var flow))
 			{

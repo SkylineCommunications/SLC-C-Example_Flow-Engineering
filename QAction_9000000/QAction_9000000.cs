@@ -22,7 +22,7 @@ public static class QAction
 	static QAction()
 	{
 		_knownTypes = new List<Type>();
-		_knownTypes.AddRange(FlowProvisioningStatics.KnownTypes);
+		_knownTypes.AddRange(FlowInfoMessage.KnownTypes);
 	}
 
 	/// <summary>
