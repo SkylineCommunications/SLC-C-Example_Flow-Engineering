@@ -6,6 +6,7 @@
 
 	using Skyline.DataMiner.Core.DataMinerSystem.Protocol;
 	using Skyline.DataMiner.FlowEngineering.Protocol;
+	using Skyline.DataMiner.FlowEngineering.Protocol.DCF;
 	using Skyline.DataMiner.Scripting;
 
 	public class RxFlows : Flows<RxFlow>
@@ -43,6 +44,11 @@
 				throw new NotSupportedException("Only IP flows are supported");
 			}
 
+			if (!DcfDynamicLink.TryParse(flowInfo.IncomingDcfDynamicLink, out var dcfDynamicLink))
+			{
+				throw new ArgumentException("Couldn't parse DCF dynamic link");
+			}
+
 			var instance = !ignoreDestinationPort
 				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}")
 				: String.Join("/", ip.SourceIP, ip.DestinationIP);
@@ -60,9 +66,9 @@
 			}
 
 			flow.FlowOwner = FlowOwner.FlowEngineering;
-			flow.LinkedFlow = Convert.ToString(flowInfo.SourceId);
-			flow.IncomingInterface = flowInfo.IncomingDcfDynamicLink;
-			flow.ExpectedBitrate = -1d; // todo, needs to be updated!
+			flow.LinkedFlow = Convert.ToString(flowInfo.ProvisionedFlowId);
+			flow.IncomingInterface = dcfDynamicLink.PK;
+			flow.ExpectedBitrate = flowInfo.GetBitrate();
 
 			return flow;
 		}

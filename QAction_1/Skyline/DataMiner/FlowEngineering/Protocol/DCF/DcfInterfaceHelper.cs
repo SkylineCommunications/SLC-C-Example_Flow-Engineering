@@ -1,4 +1,4 @@
-﻿namespace Skyline.DataMiner.FlowEngineering.Protocol
+﻿namespace Skyline.DataMiner.FlowEngineering.Protocol.DCF
 {
 	using System;
 	using System.Collections.Generic;
@@ -54,15 +54,13 @@
         {
             foreach (var intf in _interfaces.Values)
             {
-                var parts = intf.DynamicLink.Split(';');
-                if (parts.Length < 2)
-                    continue;
-
-                if (Convert.ToInt32(parts[0]) == groupId && String.Equals(parts[1], dynamicPk))
+                if (DcfDynamicLink.TryParse(intf.DynamicLink, out var dynamicLink)
+                    && dynamicLink.GroupID == groupId
+                    && String.Equals(dynamicLink.PK, dynamicPk))
                 {
-                    dcfInterface = intf;
-                    return true;
-                }
+					dcfInterface = intf;
+					return true;
+				}
             }
 
             dcfInterface = null;

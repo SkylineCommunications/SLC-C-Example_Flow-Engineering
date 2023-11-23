@@ -6,6 +6,7 @@
 
 	using Skyline.DataMiner.Core.DataMinerSystem.Protocol;
 	using Skyline.DataMiner.FlowEngineering.Protocol;
+	using Skyline.DataMiner.FlowEngineering.Protocol.DCF;
 	using Skyline.DataMiner.Scripting;
 
 	public class TxFlows : Flows<TxFlow>
@@ -43,9 +44,14 @@
 				throw new NotSupportedException("Only IP flows are supported");
 			}
 
+			if (!DcfDynamicLink.TryParse(flowInfo.OutgoingDcfDynamicLink, out var dcfDynamicLink))
+			{
+				throw new ArgumentException("Couldn't parse DCF dynamic link");
+			}
+
 			var instance = !ignoreDestinationPort
-				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}", flowInfo.OutgoingDcfDynamicLink)
-				: String.Join("/", ip.SourceIP, ip.DestinationIP, flowInfo.OutgoingDcfDynamicLink);
+				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}", dcfDynamicLink.PK)
+				: String.Join("/", ip.SourceIP, ip.DestinationIP, dcfDynamicLink.PK);
 
 			if (!TryGetValue(instance, out var flow))
 			{
@@ -60,9 +66,9 @@
 			}
 
 			flow.FlowOwner = FlowOwner.FlowEngineering;
-			flow.LinkedFlow = Convert.ToString(flowInfo.SourceId);
-			flow.OutgoingInterface = flowInfo.OutgoingDcfDynamicLink;
-			flow.ExpectedBitrate = -1d; // todo, needs to be updated!
+			flow.LinkedFlow = Convert.ToString(flowInfo.ProvisionedFlowId);
+			flow.OutgoingInterface = dcfDynamicLink.PK;
+			flow.ExpectedBitrate = flowInfo.GetBitrate();
 
 			return flow;
 		}
@@ -80,9 +86,14 @@
 				throw new NotSupportedException("Only IP flows are supported");
 			}
 
+			if (!DcfDynamicLink.TryParse(flowInfo.OutgoingDcfDynamicLink, out var dcfDynamicLink))
+			{
+				throw new ArgumentException("Couldn't parse DCF dynamic link");
+			}
+
 			var instance = !ignoreDestinationPort
-				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}", flowInfo.OutgoingDcfDynamicLink)
-				: String.Join("/", ip.SourceIP, ip.DestinationIP, flowInfo.OutgoingDcfDynamicLink);
+				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}", dcfDynamicLink.PK)
+				: String.Join("/", ip.SourceIP, ip.DestinationIP, dcfDynamicLink.PK);
 
 			if (!TryGetValue(instance, out var flow))
 			{
