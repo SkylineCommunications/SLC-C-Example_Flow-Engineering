@@ -4,6 +4,8 @@
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using Skyline.DataMiner.FlowEngineering.Protocol.DCF;
+
 	using Skyline.DataMiner.Core.DataMinerSystem.Protocol;
 	using Skyline.DataMiner.FlowEngineering.Protocol;
 	using Skyline.DataMiner.Scripting;
@@ -30,29 +32,34 @@
 			return flow;
 		}
 
-		public override RxFlow RegisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
+		public override RxFlow RegisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfoMessage flowInfo, bool ignoreDestinationPort = false)
 		{
 			if (flowInfo == null)
 			{
 				throw new ArgumentNullException(nameof(flowInfo));
 			}
 
-			var ip = flowInfo.FlowTransportIp;
+			var ip = flowInfo.IpConfiguration;
 			if (ip == null)
 			{
 				throw new NotSupportedException("Only IP flows are supported");
 			}
 
+			if (!DcfDynamicLink.TryParse(flowInfo.IncomingDcfDynamicLink, out var dcfDynamicLink))
+			{
+				throw new ArgumentException("Couldn't parse DCF dynamic link");
+			}
+
 			var instance = !ignoreDestinationPort
-				? String.Join("/", ip.SourceIp, $"{ip.DestinationIp}:{ip.DestinationPort}")
-				: String.Join("/", ip.SourceIp, ip.DestinationIp);
+				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}")
+				: String.Join("/", ip.SourceIP, ip.DestinationIP);
 
 			if (!TryGetValue(instance, out var flow))
 			{
 				flow = new RxFlow(instance)
 				{
-					SourceIP = ip.SourceIp,
-					DestinationIP = ip.DestinationIp,
+					SourceIP = ip.SourceIP,
+					DestinationIP = ip.DestinationIP,
 					DestinationPort = !ignoreDestinationPort ? Convert.ToInt32(ip.DestinationPort) : -1,
 					TransportType = FlowTransportType.IP,
 				};
@@ -60,29 +67,29 @@
 			}
 
 			flow.FlowOwner = FlowOwner.FlowEngineering;
-			flow.LinkedFlow = Convert.ToString(flowInfo.SourceFlowId);
-			flow.IncomingInterface = flowInfo.Interface;
-			flow.ExpectedBitrate = ip.BitRate;
+			flow.LinkedFlow = Convert.ToString(flowInfo.ProvisionedFlowId);
+			flow.IncomingInterface = dcfDynamicLink.PK;
+			flow.ExpectedBitrate = flowInfo.GetBitrate();
 
 			return flow;
 		}
 
-		public override RxFlow UnregisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfo flowInfo, bool ignoreDestinationPort = false)
+		public override RxFlow UnregisterFlowEngineeringFlow(ConnectorAPI.FlowEngineering.Info.FlowInfoMessage flowInfo, bool ignoreDestinationPort = false)
 		{
 			if (flowInfo == null)
 			{
 				throw new ArgumentNullException(nameof(flowInfo));
 			}
 
-			var ip = flowInfo.FlowTransportIp;
+			var ip = flowInfo.IpConfiguration;
 			if (ip == null)
 			{
 				throw new NotSupportedException("Only IP flows are supported");
 			}
 
 			var instance = !ignoreDestinationPort
-				? String.Join("/", ip.SourceIp, $"{ip.DestinationIp}:{ip.DestinationPort}")
-				: String.Join("/", ip.SourceIp, ip.DestinationIp);
+				? String.Join("/", ip.SourceIP, $"{ip.DestinationIP}:{ip.DestinationPort}")
+				: String.Join("/", ip.SourceIP, ip.DestinationIP);
 
 			if (!TryGetValue(instance, out var flow))
 			{

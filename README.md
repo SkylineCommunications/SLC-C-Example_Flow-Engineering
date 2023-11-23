@@ -256,7 +256,7 @@ List of all incoming flows on the device.
 | 8   | 1000109 | Expected Rx Bitrate Status | Normal/Low/High               | Status of 'Rx Bitrate' compared to 'Expected Rx Bitrate'.
 | 9   | 1000110 | Label                      | String                        | Custom label.
 | 10  | 1000111 | FK Outgoing                | String                        | Foreign key to [FLE Outgoing Flows Table](#fle-outgoing-flows-table). Only use this in case of 1-N mapping between incoming and outgoing, otherwise keep empty.
-| 11  | 1000112 | Linked Flow                | String (GUID)                 | GUID of the linked source flow. Empty for 'Local System' flows.
+| 11  | 1000112 | Linked Flow                | String (GUID)                 | GUID of the provisioned flow. Empty for 'Local System' flows.
 | 12  | 1000113 | Flow Owner                 | Local System/Flow Engineering | Local System: Flows that exist on the device, but not provisioned by FLE.<br>Flow Engineering: Flows that are provisioned by FLE.
 | 13  | 1000114 | Present                    | No/Yes                        | Indicates if the flow is present on the system or not.
 
@@ -278,7 +278,7 @@ List of all outgoing flows on the device.
 | 8   | 1000209 | Expected Tx Bitrate Status | Normal/Low/High               | Status of 'Tx Bitrate' compared to 'Expected Tx Bitrate'.
 | 9   | 1000210 | Label                      | String                        | Custom label.
 | 10  | 1000211 | FK Outgoing                | String                        | Foreign key to [FLE Incoming Flows Table](#fle-incoming-flows-table). Only use this in case of N-1 mapping between incoming and outgoing, otherwise keep empty.
-| 11  | 1000212 | Linked Flow                | String (GUID)                 | GUID of the linked source flow. Empty for 'Local System' flows.
+| 11  | 1000212 | Linked Flow                | String (GUID)                 | GUID of the provisioned flow. Empty for 'Local System' flows.
 | 12  | 1000213 | Flow Owner                 | Local System/Flow Engineering | Local System: Flows that exist on the device, but not provisioned by FLE.<br>Flow Engineering: Flows that are provisioned by FLE.
 | 13  | 1000214 | Present                    | No/Yes                        | Indicates if the flow is present on the system or not.
 

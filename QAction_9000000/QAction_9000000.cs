@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 using QAction_9000000;
 
-using Skyline.DataMiner.ConnectorAPI.FlowEngineering;
 using Skyline.DataMiner.ConnectorAPI.FlowEngineering.Info;
 using Skyline.DataMiner.Core.InterAppCalls.Common.CallBulk;
 using Skyline.DataMiner.Scripting;
@@ -22,7 +21,7 @@ public static class QAction
 	static QAction()
 	{
 		_knownTypes = new List<Type>();
-		_knownTypes.AddRange(FlowProvisioningStatics.KnownTypes);
+		_knownTypes.AddRange(FlowInfoMessage.KnownTypes);
 	}
 
 	/// <summary>
