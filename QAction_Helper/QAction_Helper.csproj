@@ -5,7 +5,7 @@
     <Copyright>© Skyline Communications</Copyright>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Skyline.DataMiner.Dev.Protocol" Version="10.3.10.1" />
+    <PackageReference Include="Skyline.DataMiner.Dev.Protocol" Version="10.3.12.2" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
