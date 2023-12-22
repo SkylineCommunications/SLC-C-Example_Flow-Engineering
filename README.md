@@ -43,7 +43,7 @@ flowEngineering.IncomingFlows.UpdateTable(protocol);
 flowEngineering.OutgoingFlows.UpdateTable(protocol);
 ```
 
-> **Note**
+> [!NOTE]
 > Data is being cached in the SLScripting process. To ensure that all old data is cleared, it's recommended to call `FlowEngineeringManagerInstances.CreateNewInstance(protocol)` after startup.
 
 ### FLE Interfaces table
