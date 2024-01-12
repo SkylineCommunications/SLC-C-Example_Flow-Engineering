@@ -68,6 +68,8 @@ Any inquiries can be addressed to:
 		<Relation path="1000000;1000200" />
 		<Relation path="1000100;1000200" />
 		<Relation path="1000200;1000100" />
+		<Relation path="1000300;1000100" />
+		<Relation path="1000300;1000200" />
 	</Relations>
 
 	<Params>
@@ -896,7 +898,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="8" pid="1000109" type="retrieved" options="" />
 				<ColumnOption idx="9" pid="1000110" type="retrieved" options=";save" />
 				<ColumnOption idx="10" pid="1000111" type="retrieved" options=";save;foreignKey=1000200" />
-				<ColumnOption idx="11" pid="1000112" type="retrieved" options=";save" />
+				<ColumnOption idx="11" pid="1000112" type="retrieved" options=";save;foreignKey=1000300" />
 				<ColumnOption idx="12" pid="1000113" type="retrieved" options=";save" />
 				<ColumnOption idx="13" pid="1000114" type="retrieved" options="" />
 				<ColumnOption idx="14" pid="1000165" type="retrieved" options="" />
@@ -1404,7 +1406,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="8" pid="1000209" type="retrieved" options="" />
 				<ColumnOption idx="9" pid="1000210" type="retrieved" options=";save" />
 				<ColumnOption idx="10" pid="1000211" type="retrieved" options=";save;foreignKey=1000100" />
-				<ColumnOption idx="11" pid="1000212" type="retrieved" options=";save" />
+				<ColumnOption idx="11" pid="1000212" type="retrieved" options=";save;foreignKey=1000300" />
 				<ColumnOption idx="12" pid="1000213" type="retrieved" options=";save" />
 				<ColumnOption idx="13" pid="1000214" type="retrieved" options="" />
 				<ColumnOption idx="14" pid="1000265" type="retrieved" options="" />
@@ -1893,6 +1895,311 @@ Any inquiries can be addressed to:
 						<Value>1</Value>
 					</Discreet>
 				</Discreets>
+			</Measurement>
+		</Param>
+		
+		<Param id="1000300">
+			<Name>fleProvisionedFlowsTable</Name>
+			<Description>FLE Provisioned Flows Table</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="1000301" type="retrieved" options=";save" />
+				<ColumnOption idx="1" pid="1000302" type="retrieved" options=";save" />
+				<ColumnOption idx="2" pid="1000303" type="retrieved" options=";save" />
+				<ColumnOption idx="3" pid="1000304" type="retrieved" options=";save" />
+				<ColumnOption idx="4" pid="1000305" type="retrieved" options=";save" />
+				<ColumnOption idx="5" pid="1000306" type="retrieved" options=";save" />
+				<ColumnOption idx="6" pid="1000307" type="retrieved" options=";save" />
+				<ColumnOption idx="7" pid="1000308" type="retrieved" options=";save" />
+				<ColumnOption idx="8" pid="1000309" type="retrieved" options=";save" />
+				<ColumnOption idx="9" pid="1000310" type="retrieved" options=";save" />
+				<ColumnOption idx="10" pid="1000311" type="retrieved" options=";save" />
+				<ColumnOption idx="11" pid="1000312" type="retrieved" options=";save" />
+				<ColumnOption idx="12" pid="1000313" type="retrieved" options=";save" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>FLE Incoming Flows Table</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Flow Engineering</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:1000301|0-1000302|1-1000303|2-1000304|3-1000305|4-1000306|5-1000307|6-1000308|7-1000309|8-1000310|9-1000311|10-1000312|11-1000313|12,width:200-100-100-152-177-152-178-165-192-100-111-100-100,sort:STRING-STRING-STRING-INT-STRING-INT-STRING-STRING-STRING-STRING-INT-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000301" trending="false">
+			<Name>fleProvisionedFlowsTableId</Name>
+			<Description>ID (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>ID (GUID) of the provisioned flow.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000302" trending="false">
+			<Name>fleProvisionedFlowsTableSourceId</Name>
+			<Description>Source ID (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>ID (GUID) of the source flow.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000303" trending="false">
+			<Name>fleProvisionedFlowsTableDestinationId</Name>
+			<Description>Destination ID (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>ID (GUID) of the destination flow.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000304" trending="false">
+			<Name>fleProvisionedFlowsTableIncomingDcfInterfaceId</Name>
+			<Description>Incoming DCF Interface (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>ID of the incoming DCF interface.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<!-- SuppressValidator 2.9.7 no units needed -->
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Range>
+					<Low>0</Low>
+				</Range>
+			</Display>
+			<!-- /SuppressValidator 2.9.7 -->
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000305" trending="false">
+			<Name>fleProvisionedFlowsTableIncomingDcfInterfaceDynamicLink</Name>
+			<Description>Incoming DCF Dynamic Link (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Dynamic link of the incoming DCF interface.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000306" trending="false">
+			<Name>fleProvisionedFlowsTableOutgoingDcfInterfaceId</Name>
+			<Description>Outgoing DCF Interface (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>ID of the outgoing DCF interface.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<!-- SuppressValidator 2.9.7 no units needed -->
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Range>
+					<Low>0</Low>
+				</Range>
+			</Display>
+			<!-- /SuppressValidator 2.9.7 -->
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000307" trending="false">
+			<Name>fleProvisionedFlowsTableOutgoingDcfInterfaceDynamicLink</Name>
+			<Description>Outgoing DCF Dynamic Link (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Dynamic link of the outgoing DCF interface.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000308" trending="false">
+			<Name>fleProvisionedFlowsTableOptionalSourceIdentifier</Name>
+			<Description>Optional Source Identifier (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Optional source identifier.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000309" trending="false">
+			<Name>fleProvisionedFlowsTableOptionalDestinationIdentifier</Name>
+			<Description>Optional Destination Identifier (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Optional destination identifier.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000310" trending="false">
+			<Name>fleProvisionedFlowsTableDestinationIp</Name>
+			<Description>Destination IP (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Destination IP.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000311" trending="false">
+			<Name>fleProvisionedFlowsTableDestinationPort</Name>
+			<Description>Destination Port (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Destination port.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Exceptions>
+					<Exception id="1" value="-1">
+						<Display state="disabled">N/A</Display>
+						<Value>-1</Value>
+					</Exception>
+				</Exceptions>
+			</Interprete>
+			<!-- SuppressValidator 2.9.7 no units needed -->
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Range>
+					<Low>0</Low>
+				</Range>
+			</Display>
+			<!-- /SuppressValidator 2.9.7 -->
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000312" trending="false">
+			<Name>fleProvisionedFlowsTableSourceIp</Name>
+			<Description>Source IP (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Source IP.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1000313" trending="false">
+			<Name>fleProvisionedFlowsTableExtraData</Name>
+			<Description>Extra Data (FLE Provisioned Flows Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Extra saved data.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
 			</Measurement>
 		</Param>
 		
