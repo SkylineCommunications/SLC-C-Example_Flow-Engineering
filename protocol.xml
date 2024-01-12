@@ -2184,11 +2184,11 @@ Any inquiries can be addressed to:
 			</Measurement>
 		</Param>
 		<Param id="1000313" trending="false">
-			<Name>fleProvisionedFlowsTableExtraData</Name>
-			<Description>Extra Data (FLE Provisioned Flows Table)</Description>
+			<Name>fleProvisionedFlowsTableMetadata</Name>
+			<Description>Metadata (FLE Provisioned Flows Table)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Extra saved data.</Subtext>
+				<Subtext>Metadata.</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
