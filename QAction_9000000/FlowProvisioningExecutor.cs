@@ -1,5 +1,8 @@
 ﻿namespace QAction_9000000
 {
+	using System;
+
+	using Skyline.DataMiner.ConnectorAPI.FlowEngineering.Enums;
 	using Skyline.DataMiner.ConnectorAPI.FlowEngineering.Info;
 	using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
 	using Skyline.DataMiner.Core.InterAppCalls.Common.MessageExecution;
@@ -19,7 +22,23 @@
 
 			// Flow engineering
 			var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
-			flowEngineering.HandleInterAppMessage(protocol, Message);
+
+			switch (Message.ActionType)
+			{
+				case ActionType.Create:
+					var flowInstance = Message.OptionalDestinationIdentifier;
+					var addedFlows = flowEngineering.RegisterFlowEngineeringFlowsFromInterAppMessage(protocol, Message, flowInstance);
+
+					break;
+
+				case ActionType.Delete:
+					var removedFlows = flowEngineering.UnregisterFlowEngineeringFlowsFromInterAppMessage(protocol, Message);
+
+					break;
+
+				default:
+					throw new InvalidOperationException($"Unknown action: {Message.ActionType}");
+			}
 
 			optionalReturnMessage = null;
 			return true;

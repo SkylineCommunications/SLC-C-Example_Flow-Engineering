@@ -177,12 +177,22 @@ See [QAction 9000000](QAction_9000000/QAction_9000000.cs)
 
 ```csharp
 var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
-var (addedFlows, _) = flowEngineering.HandleInterAppMessage(protocol, Message, ignoreDestinationPort: true);
 
-// link outgoing flows with incoming flows
-foreach (var outFlow in addedFlows.OfType<TxFlow>())
+switch (Message.ActionType)
 {
-	outFlow.ForeignKeyIncoming = $"{outFlow.SourceIP}/{outFlow.DestinationIP}";
+	case ActionType.Create:
+		var flowInstance = Message.OptionalDestinationIdentifier;
+		var addedFlows = flowEngineering.RegisterFlowEngineeringFlowsFromInterAppMessage(protocol, Message, flowInstance);
+
+		break;
+
+	case ActionType.Delete:
+		var removedFlows = flowEngineering.UnregisterFlowEngineeringFlowsFromInterAppMessage(protocol, Message);
+
+		break;
+
+	default:
+		throw new InvalidOperationException($"Unknown action: {Message.ActionType}");
 }
 ```
 

@@ -76,7 +76,7 @@ Any inquiries can be addressed to:
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
 		</Param>
-
+		
 		
 		
 		
@@ -121,7 +121,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:1000001|0-1000002|1-1000003|2-1000004|3-1000005|4-1000006|5-1000007|6-1000008|7-1000009|8-1000010|9-1000011|10-1000012|11-1000013|12-1000014|13-1000015|14-1000016|15-1000017|16-1000018|17-1000019|18-1000020|19-1000021|20,width:100-100-100-100-108-116-100-100-100-100-100-100-129-167-123-161-127-165-121-159-111,sort:STRING-STRING-INT-INT-INT-STRING-INT-INT-INT-INT-INT-INT-INT-INT-INT-INT-INT-INT-INT-STRING-INT,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:1000001|0-1000002|1-1000003|2-1000004|3-1000005|4-1000006|5-1000007|6-1000008|7-1000009|8-1000010|9-1000011|10-1000012|11-1000013|12-1000014|13-1000015|14-1000016|15-1000017|16-1000018|17-1000019|18-1000020|19-1000021|20,width:200-100-100-100-108-200-100-100-100-100-100-100-129-167-123-161-127-165-121-159-111,sort:STRING-STRING-INT-INT-INT-STRING-INT-INT-INT-INT-INT-INT-INT-INT-INT-INT-INT-INT-INT-STRING-INT,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="1000001" trending="false">
@@ -879,7 +879,7 @@ Any inquiries can be addressed to:
 				<Type>number</Type>
 			</Measurement>
 		</Param>
-
+		
 		<Param id="1000100">
 			<Name>fleIncomingFlowsTable</Name>
 			<Description>FLE Incoming Flows Table</Description>
@@ -1387,7 +1387,7 @@ Any inquiries can be addressed to:
 				</Discreets>
 			</Measurement>
 		</Param>
-
+		
 		<Param id="1000200">
 			<Name>fleOutgoingFlowsTable</Name>
 			<Description>FLE Outgoing Flows Table</Description>
