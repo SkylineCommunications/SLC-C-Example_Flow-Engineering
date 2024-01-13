@@ -11,7 +11,7 @@ These tables are used by the MediaOps solution to show the **as-is** path, which
 ## Implementation
 ### Protocol.xml
 
- - Copy tables 9991000, 9991100 and 9991200
+ - Copy tables 9991000, 9991100, 9991200 and 9991300
  - Copy relations
  - Copy QAction 9991000 (including code)
 
