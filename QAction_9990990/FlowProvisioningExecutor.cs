@@ -1,4 +1,4 @@
-﻿namespace QAction_9000000
+﻿namespace QAction_9990990
 {
 	using System;
 
@@ -26,13 +26,12 @@
 			switch (Message.ActionType)
 			{
 				case ActionType.Create:
-					var flowInstance = Message.OptionalDestinationIdentifier;
-					var addedFlows = flowEngineering.RegisterFlowEngineeringFlowsFromInterAppMessage(protocol, Message, flowInstance);
+					var addedFlows = flowEngineering.RegisterProvisionedFlowFromInterAppMessage(protocol, Message);
 
 					break;
 
 				case ActionType.Delete:
-					var removedFlows = flowEngineering.UnregisterFlowEngineeringFlowsFromInterAppMessage(protocol, Message);
+					var (provisionedFlow, removedFlows) = flowEngineering.UnregisterProvisionedFlowFromInterAppMessage(protocol, Message);
 
 					break;
 

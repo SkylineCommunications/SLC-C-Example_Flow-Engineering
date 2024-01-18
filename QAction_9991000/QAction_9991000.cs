@@ -37,6 +37,9 @@ public static class QAction
 				case Parameter.Fleoutgoingflowstable.Pid.Write.fleoutgoingflowstabledelete:
 					DeleteFlow(protocol, flowEngineering, flowEngineering.OutgoingFlows, key);
 					break;
+				case Parameter.Fleprovisionedflowstable.Pid.Write.fleprovisionedflowstabledelete:
+					DeleteProvisionedFlow(protocol, flowEngineering, key);
+					break;
 				default:
 					throw new InvalidOperationException($"Invalid trigger: {trigger}");
 			}
@@ -64,12 +67,17 @@ public static class QAction
 	private static void DeleteFlow<T>(SLProtocolExt protocol, FlowEngineeringManager flowEngineering, Flows<T> flows, string key)
 		where T : Flow
 	{
-		if (!flows.Remove(key))
+		if (!flows.TryRemove(key, out _))
 		{
 			return;
 		}
 
 		flows.UpdateTable(protocol);
 		flowEngineering.Interfaces.UpdateStatistics(protocol);
+	}
+
+	private static void DeleteProvisionedFlow(SLProtocolExt protocol, FlowEngineeringManager flowEngineering, string key)
+	{
+		flowEngineering.UnregisterProvisionedFlow(protocol, Guid.Parse(key));
 	}
 }
