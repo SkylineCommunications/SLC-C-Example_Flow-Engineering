@@ -662,6 +662,11 @@ public static class Parameter
 			public const int fleprovisionedflowstablemetadata = 9991313;
 			public class Write
 			{
+				/// <summary>PID: 9991365 | Type: write</summary>
+				[EditorBrowsable(EditorBrowsableState.Never)]
+				public const int fleprovisionedflowstabledelete_9991365 = 9991365;
+				/// <summary>PID: 9991365 | Type: write</summary>
+				public const int fleprovisionedflowstabledelete = 9991365;
 			}
 		}
 		public class Idx
@@ -744,6 +749,8 @@ public class WriteParameters
 	public System.Object Fleoutgoingflowstableexpectedtxbitrate {get { return Protocol.GetParameter(9991258); }set { Protocol.SetParameter(9991258, value); }}
 	/// <summary>PID: 9991265  | Type: write | DISCREETS: Delete = 1</summary>
 	public System.Object Fleoutgoingflowstabledelete {get { return Protocol.GetParameter(9991265); }set { Protocol.SetParameter(9991265, value); }}
+	/// <summary>PID: 9991365  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleprovisionedflowstabledelete {get { return Protocol.GetParameter(9991365); }set { Protocol.SetParameter(9991365, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -895,6 +902,8 @@ public interface SLProtocolExt : SLProtocol
 	object Fleprovisionedflowstablesourceip { get; set; }
 	object Fleprovisionedflowstablemetadata_9991313 { get; set; }
 	object Fleprovisionedflowstablemetadata { get; set; }
+	object Fleprovisionedflowstabledelete_9991365 { get; set; }
+	object Fleprovisionedflowstabledelete { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -1243,6 +1252,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Fleprovisionedflowstablemetadata_9991313 {get { return GetParameter(9991313); }set { SetParameter(9991313, value); }}
 	/// <summary>PID: 9991313  | Type: read</summary>
 	public System.Object Fleprovisionedflowstablemetadata {get { return GetParameter(9991313); }set { SetParameter(9991313, value); }}
+	/// <summary>PID: 9991365  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleprovisionedflowstabledelete_9991365 {get { return GetParameter(9991365); }set { SetParameter(9991365, value); }}
+	/// <summary>PID: 9991365  | Type: write | DISCREETS: Delete = 1</summary>
+	public System.Object Fleprovisionedflowstabledelete {get { return Write.Fleprovisionedflowstabledelete; }set { Write.Fleprovisionedflowstabledelete = value; }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -1636,8 +1649,12 @@ public class FleprovisionedflowstableQActionRow : QActionTableRow
 	public System.Object Fleprovisionedflowstablemetadata_9991313 { get { if (base.Columns.ContainsKey(12)) { return base.Columns[12]; } else { return null; } } set { if (base.Columns.ContainsKey(12)) { base.Columns[12] = value; } else { base.Columns.Add(12, value); } } }
 	/// <summary>PID: 9991313 | Type: read</summary>
 	public System.Object Fleprovisionedflowstablemetadata { get { if (base.Columns.ContainsKey(12)) { return base.Columns[12]; } else { return null; } } set { if (base.Columns.ContainsKey(12)) { base.Columns[12] = value; } else { base.Columns.Add(12, value); } } }
-	public FleprovisionedflowstableQActionRow() : base(0, 13) { }
-	public FleprovisionedflowstableQActionRow(System.Object[] oRow) : base(0, 13, oRow) { }
+	/// <summary>PID: 9991365 | Type: write</summary>
+	public System.Object Fleprovisionedflowstabledelete_9991365 { get { if (base.Columns.ContainsKey(13)) { return base.Columns[13]; } else { return null; } } set { if (base.Columns.ContainsKey(13)) { base.Columns[13] = value; } else { base.Columns.Add(13, value); } } }
+	/// <summary>PID: 9991365 | Type: write</summary>
+	public System.Object Fleprovisionedflowstabledelete { get { if (base.Columns.ContainsKey(13)) { return base.Columns[13]; } else { return null; } } set { if (base.Columns.ContainsKey(13)) { base.Columns[13] = value; } else { base.Columns.Add(13, value); } } }
+	public FleprovisionedflowstableQActionRow() : base(0, 14) { }
+	public FleprovisionedflowstableQActionRow(System.Object[] oRow) : base(0, 14, oRow) { }
 	public static implicit operator FleprovisionedflowstableQActionRow(System.Object[] source) { return new FleprovisionedflowstableQActionRow(source); }
 	public static implicit operator System.Object[](FleprovisionedflowstableQActionRow source) { return source.ToObjectArray(); }
 	public System.String[] GetChildKeysFleincomingflowstableFleincomingflowstablelinkedflow(SLProtocol protocol) { return (System.String[])protocol.NotifyProtocol(196, 9991112, Key); }

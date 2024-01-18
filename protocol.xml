@@ -78,9 +78,9 @@ Any inquiries can be addressed to:
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
 		</Param>
-
-
-
+		
+		
+		
 		<Param id="9990990" trending="false">
 			<Name>fleInterAppReceive</Name>
 			<Description>FLE Inter App Receiver</Description>
@@ -1956,9 +1956,10 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="10" pid="9991311" type="retrieved" options=";save" />
 				<ColumnOption idx="11" pid="9991312" type="retrieved" options=";save" />
 				<ColumnOption idx="12" pid="9991313" type="retrieved" options=";save" />
+				<ColumnOption idx="13" pid="9991365" type="retrieved" options="" />
 			</ArrayOptions>
 			<Information>
-				<Subtext>FLE Incoming Flows Table</Subtext>
+				<Subtext>FLE Provisioned Flows Table</Subtext>
 			</Information>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -1971,7 +1972,7 @@ Any inquiries can be addressed to:
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:9991301|0-9991302|1-9991303|2-9991304|3-9991305|4-9991306|5-9991307|6-9991308|7-9991309|8-9991310|9-9991311|10-9991312|11-9991313|12,width:200-100-100-152-177-152-178-165-192-100-111-100-100,sort:STRING-STRING-STRING-INT-STRING-INT-STRING-STRING-STRING-STRING-INT-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:9991301|0-9991302|1-9991303|2-9991304|3-9991305|4-9991306|5-9991307|6-9991308|7-9991309|8-9991310|9-9991311|10-9991312|11-9991313|12-9991365|13,width:200-100-100-152-177-152-178-165-192-100-111-100-100-100,sort:STRING-STRING-STRING-INT-STRING-INT-STRING-STRING-STRING-STRING-INT-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="9991301" trending="false">
@@ -2242,7 +2243,32 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		
+		<Param id="9991365" setter="true">
+			<Name>fleProvisionedFlowsTableDelete</Name>
+			<Description>Delete (FLE Provisioned Flows Table)</Description>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Delete this flow.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Message>Are you sure you want to delete this flow?</Message>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Delete</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
 		
 	</Params>
 
@@ -2251,7 +2277,7 @@ Any inquiries can be addressed to:
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 
 		<QAction id="9990990" name="InterApp" encoding="csharp" triggers="9990990" />
-		<QAction id="9991000" name="Flow Engineering Sets" encoding="csharp" triggers="9991158;9991165;9991258;9991265" row="true" />
+		<QAction id="9991000" name="Flow Engineering Sets" encoding="csharp" triggers="9991158;9991165;9991258;9991265;9991365" row="true" />
 
 	</QActions>
 
