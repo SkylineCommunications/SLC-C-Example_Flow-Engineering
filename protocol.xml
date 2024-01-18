@@ -64,12 +64,12 @@ Any inquiries can be addressed to:
 	</Compliancies>
 
 	<Relations>
-		<Relation path="9991000;9991100" />
-		<Relation path="9991000;9991200" />
-		<Relation path="9991100;9991200" />
-		<Relation path="9991200;9991100" />
-		<Relation path="9991300;9991100" />
-		<Relation path="9991300;9991200" />
+		<Relation path="9991000;9991100" name="FLE Interface - Incoming Flow" />
+		<Relation path="9991000;9991200" name="FLE Interface - Outgoing Flow" />
+		<Relation path="9991100;9991200" name="FLE Incoming Flow - Outgoing Flow" />
+		<Relation path="9991200;9991100" name="FLE Outgoing Flow - Incoming Flow" />
+		<Relation path="9991300;9991100" name="FLE Provisioned Flow - Incoming Flow" />
+		<Relation path="9991300;9991200" name="FLE Provisioned Flow - Outoing Flow" />
 	</Relations>
 
 	<Params>
