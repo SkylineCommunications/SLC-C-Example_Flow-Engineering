@@ -173,6 +173,22 @@ flowEngineering.UpdateInterfaceAndOutgoingFlowsTables(protocol);
 #### FlowInfoMessage
 The `FlowInfoMessage` is being used to update the flow IDs and owner in the flow tables and to configure the device. The other data in these tables should be based on data that was retrieved from the device through polling. Flow configuration data should not go immediately from the interapp message into the tables (in most cases). This is important because it could be that the device did not get configured correctly (same principle as when doing a set on the device).
 
+| Property                      | Type                       | Description                                                                                    |
+|-------------------------------|----------------------------|------------------------------------------------------------------------------------------------|
+| ProvisionedFlowId             | Guid                       | The DOM instance ID of the provisioned flow.                                                   |
+| SourceId                      | Guid                       | The DOM instance ID of the source virtual signal group.                                        |
+| DestinationId                 | Guid                       | The DOM instance ID of the destination virtual signal group.                                   |
+| IncomingDcfInterfaceID        | int                        | The ID of the incoming DCF interface.                                                          |
+| IncomingDcfDynamicLink        | string                     | "ParameterGroupID;PrimaryKey" of the incoming DCF interface.                                   |
+| OutgoingDcfInterfaceID        | int                        | The ID of the outgoing DCF interface.                                                          |
+| IncomingDcfDynamicLink        | string                     | "ParameterGroupID;PrimaryKey" of the outgoing DCF interface.                                   |
+| OptionalSourceIdentifier      | string                     | An optional identifier of the source that can be used in addition to the DOM instance ID.      |
+| OptionalDestinationIdentifier | string                     | An optional identifier of the destination that can be used in addition to the DOM instance ID. |
+| IsIncoming                    | bool                       | Indicates whether the stream should enter the current element.                                 |
+| IsOutgoing                    | bool                       | Indicates whether the stream should exit the current element.                                  |
+| IpConfiguration               | IpConfiguration            | The configuration for an IP-based media stream.<br />Is null for non IP-based media streams.   |
+| Metadata                      | Dictionary<string, string> | Extra metadata that can be used to configure the flow.                                         |
+
 See [QAction 9000000](QAction_9000000/QAction_9000000.cs)
 
 ```csharp
@@ -195,6 +211,16 @@ switch (Message.ActionType)
 		throw new InvalidOperationException($"Unknown action: {Message.ActionType}");
 }
 ```
+
+#### FlowInfoResponseMessage
+After processing the [FlowInfoMessage](#flowinfomessage) and configuring the device, the connector must reply with a FlowInfoResponseMessage.
+The purpose of this message is to let flow-engineering know if the request was successful or not. When something goes wrong, a message should be provided that explains what exactly went wrong.
+
+| Property          | Type   | Description                                                                                              |
+|-------------------|--------|----------------------------------------------------------------------------------------------------------|
+| ProvisionedFlowId | Guid   | The DOM instance ID of the provisioned flow. This should be the same ID as in the request. |
+| IsSuccess         | bool   | Indicates whether the flow was succesfully connected or disconnected.              |
+| Message           | string | A message that describes what exactly went wrong in case the action was not successful.   |
 
 #### Request SDP using InterApp message
 For more information about requesting SDP file content for a specific sender using InterApp message, see [Request SDP using InterApp](<Documentation/Request SDP using InterApp.md>).
