@@ -258,7 +258,7 @@ List of interfaces that are eligible for flow engineering.
 | 12  | 9991013 | Expected Rx Bitrate        | Number (Mbps)       | Sum of all expected bitrates in [FLE Incoming Flows Table](#fle-incoming-flows-table).
 | 13  | 9991014 | Expected Rx Bitrate Status | Normal/Low/High     | Status of 'Rx Bitrate' compared to 'Expected Rx Bitrate'.
 | 14  | 9991015 | Expected Rx Flows          | Number (Flows)      | Total number of flows in [FLE Incoming Flows Table](#fle-incoming-flows-table).
-| 15  | 9991016 | Expected Rx Flows Status   | Normal/Low/High     | Status of 'v Flows' compared to 'Expected Rx Flows'.
+| 15  | 9991016 | Expected Rx Flows Status   | Normal/Low/High     | Status of 'Rx Flows' compared to 'Expected Rx Flows'.
 | 16  | 9991017 | Expected Tx Bitrate        | Number (Mbps)       | Sum of all expected bitrates in [FLE Outgoing Flows Table](#fle-outgoing-flows-table).
 | 17  | 9991018 | Expected Tx Bitrate Status | Normal/Low/High     | Status of 'Tx Bitrate' compared to 'Expected Tx Bitrate'.
 | 18  | 9991019 | Expected Tx Flows          | Number (Flows)      | Total number of flows in [FLE Outgoing Flows Table](#fle-outgoing-flows-table).
