@@ -213,14 +213,38 @@ switch (Message.ActionType)
 ```
 
 #### FlowInfoResponseMessage
-After processing the [FlowInfoMessage](#flowinfomessage) and configuring the device, the connector must reply with a FlowInfoResponseMessage.
-The purpose of this message is to let flow-engineering know if the request was successful or not. When something goes wrong, a message should be provided that explains what exactly went wrong.
+After processing the [FlowInfoMessage](#flowinfomessage) and configuring the device, the connector must reply with a FlowInfoResponseMessage. The purpose of this message is to let flow-engineering know if the request was successful or not. When something goes wrong, a message should be provided that explains what exactly went wrong.
 
 | Property          | Type   | Description                                                                                              |
 |-------------------|--------|----------------------------------------------------------------------------------------------------------|
 | ProvisionedFlowId | Guid   | The DOM instance ID of the provisioned flow. This should be the same ID as in the request. |
 | IsSuccess         | bool   | Indicates whether the flow was succesfully connected or disconnected.              |
 | Message           | string | A message that describes what exactly went wrong in case the action was not successful.   |
+
+##### Flow update tracker
+Between receiving a [FlowInfoMessage](#flowinfomessage) and being able to send a [FlowInfoResponseMessage](#flowinforesponsemessage), typically data needs to be set and get from the device. This can make it challenging to reply to the correct request message. To make this easier the `FlowUpdateTracker` class was created.
+
+To create such tracker the following code can be used. This creates a tracker based on the received request and stores this object in a dictionary so that it can be retrieved later (after polling the new data). The `Tag` property allows you to attach extra data to the tracker, to make it easier to retrieve it back.
+
+```csharp
+var tracker = flowEngineering.FlowUpdateTrackers.CreateTracker(message);
+tracker.Tag = $"SRC/{sourceKey}/DST/{destinationKey}";
+```
+
+The following code retrieves the tracker object back from the dictionary, based on a condition (tag in this case).
+
+```csharp
+var tag = $"SRC/{sourceKey}/DST/{destinationKey}";
+var tracker = fle.FlowUpdateTrackers.Values.FirstOrDefault(x => String.Equals(x.Tag, tag));
+```
+
+Calling the `SetSuccess()` or `SetFailed()` method will send the response message back to flow-engineering.
+
+```csharp
+tracker.SetSuccess(protocol);
+or
+tracker.SetFailed(protocol, "my message");
+```
 
 #### Request SDP using InterApp message
 For more information about requesting SDP file content for a specific sender using InterApp message, see [Request SDP using InterApp](<Documentation/Request SDP using InterApp.md>).
