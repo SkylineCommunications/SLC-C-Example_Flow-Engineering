@@ -242,7 +242,7 @@ Calling the `SetSuccess()` or `SetFailed()` method will send the response messag
 
 ```csharp
 tracker.SetSuccess(protocol);
-or
+<or>
 tracker.SetFailed(protocol, "my message");
 ```
 
