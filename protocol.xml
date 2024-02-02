@@ -2,7 +2,7 @@
 <!--
 
 ****************************************************************************
-*  Copyright (c) 2023,  Skyline Communications NV  All Rights Reserved.    *
+*  Copyright (c) 2024,  Skyline Communications NV  All Rights Reserved.    *
 ****************************************************************************
 
 By using this driver, you expressly agree with the usage terms and
@@ -48,12 +48,12 @@ Any inquiries can be addressed to:
 	<Name>Skyline Example Flow Engineering</Name>
 	<Description>Skyline Example Flow Engineering DataMiner connector</Description>
 	<Version>1.0.0.1</Version>
-	<IntegrationID>DMS-DRV-XXXX</IntegrationID>
+	<IntegrationID>DMS-DRV-9027</IntegrationID>
 	<Provider>Skyline Communications</Provider>
-	<Vendor>Skyline</Vendor>
-	<VendorOID>1.3.6.1.4.1.8813.2.X</VendorOID>
-	<DeviceOID>X</DeviceOID>
-	<ElementType>Switch</ElementType>
+	<Vendor>Skyline Example</Vendor>
+	<VendorOID>1.3.6.1.4.1.8813.2.1218</VendorOID>
+	<DeviceOID>4</DeviceOID>
+	<ElementType>Example</ElementType>
 	<Type relativeTimers="true">virtual</Type>
 	<Display defaultPage="General" pageOrder="General;Flow Engineering" wideColumnPages="Flow Engineering"/>
 	<SNMP includepages="true">auto</SNMP>
