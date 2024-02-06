@@ -2273,7 +2273,6 @@ Any inquiries can be addressed to:
 	</Params>
 
 	<QActions>
-		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 
 		<QAction id="9990990" name="Flow Engineering InterApp" encoding="csharp" triggers="9990990" />
