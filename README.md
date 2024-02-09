@@ -327,7 +327,7 @@ List of all incoming flows on the device.
 | 2   | 9991103 | Destination Port           | Number                        | Multicast destination port. Empty for SDI and ASI.
 | 3   | 9991104 | Source IP                  | String                        | Multicast source IP address. Empty for SDI and ASI.
 | 4   | 9991105 | Incoming Interface         | String                        | Foreign key to [FLE Interfaces Overview Table](#fle-interfaces-overview-table).
-| 5   | 9991106 | Transport Type             | IP/SDI/ASI                    | Transport type of the signal.
+| 5   | 9991106 | Transport Type             | IP/SDI/ASI/Other                    | Transport type of the signal.
 | 6   | 9991107 | Rx Bitrate                 | Number (Mbps)                 | Actual received bitrate of the flow (as reported by the device).
 | 7   | 9991108 | Expected Rx Bitrate        | Number (Mbps)                 | Expected received bitrate of the flow (from FLE).
 | 8   | 9991109 | Expected Rx Bitrate Status | Normal/Low/High               | Status of 'Rx Bitrate' compared to 'Expected Rx Bitrate'.
@@ -349,7 +349,7 @@ List of all outgoing flows on the device.
 | 2   | 9991203 | Destination Port           | Number                        | Multicast destination port. Empty for SDI and ASI.
 | 3   | 9991204 | Source IP                  | String                        | Multicast source IP address. Empty for SDI and ASI.
 | 4   | 9991205 | Incoming Interface         | String                        | Foreign key to [FLE Interfaces Overview Table](#fle-interfaces-overview-table).
-| 5   | 9991206 | Transport Type             | IP/SDI/ASI                    | Transport type of the signal.
+| 5   | 9991206 | Transport Type             | IP/SDI/ASI/Other                    | Transport type of the signal.
 | 6   | 9991207 | Tx Bitrate                 | Number (Mbps)                 | Actual transmitted bitrate of the flow (as reported by the device).
 | 7   | 9991208 | Expected Tx Bitrate        | Number (Mbps)                 | Expected transmitted bitrate of the flow (from FLE).
 | 8   | 9991209 | Expected Tx Bitrate Status | Normal/Low/High               | Status of 'Tx Bitrate' compared to 'Expected Tx Bitrate'.
