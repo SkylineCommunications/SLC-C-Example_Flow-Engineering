@@ -23,20 +23,31 @@
 			// Flow engineering
 			var flowEngineering = FlowEngineeringManager.GetInstance(protocol);
 
-			switch (Message.ActionType)
+			try
 			{
-				case ActionType.Create:
-					var addedFlows = flowEngineering.RegisterProvisionedFlowFromInterAppMessage(protocol, Message);
+				switch (Message.ActionType)
+				{
+					case ActionType.Create:
+						var addedFlows = flowEngineering.RegisterProvisionedFlowFromInterAppMessage(protocol, Message);
 
-					break;
+						break;
 
-				case ActionType.Delete:
-					var (provisionedFlow, removedFlows) = flowEngineering.UnregisterProvisionedFlowFromInterAppMessage(protocol, Message);
+					case ActionType.Delete:
+						var (provisionedFlow, removedFlows) = flowEngineering.UnregisterProvisionedFlowFromInterAppMessage(protocol, Message);
 
-					break;
+						break;
 
-				default:
-					throw new InvalidOperationException($"Unknown action: {Message.ActionType}");
+					default:
+						throw new InvalidOperationException($"Unknown action: {Message.ActionType}");
+				}
+
+				// in reality this should be done after polling and validating the configuration
+				Message.ReplySuccess(protocol);
+			}
+			catch (Exception ex)
+			{
+				Message.ReplyFailed(protocol, ex.ToString());
+				throw;
 			}
 
 			optionalReturnMessage = null;
