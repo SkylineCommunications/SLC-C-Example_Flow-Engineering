@@ -929,7 +929,7 @@ Any inquiries can be addressed to:
 			<ArrayOptions index="0">
 				<ColumnOption idx="0" pid="9991101" type="retrieved" options=";save" />
 				<ColumnOption idx="1" pid="9991102" type="retrieved" options=";save" />
-				<ColumnOption idx="2" pid="9991103" type="retrieved" options=";save;disableHeaderSum;enableHistogram;enableHeatmap" />
+				<ColumnOption idx="2" pid="9991103" type="retrieved" options=";save;disableHeaderSum;disableHistogram;disableHeatmap" />
 				<ColumnOption idx="3" pid="9991104" type="retrieved" options=";save" />
 				<ColumnOption idx="4" pid="9991105" type="retrieved" options=";save;foreignKey=9991000" />
 				<ColumnOption idx="5" pid="9991106" type="retrieved" options=";save" />
@@ -1437,7 +1437,7 @@ Any inquiries can be addressed to:
 			<ArrayOptions index="0">
 				<ColumnOption idx="0" pid="9991201" type="retrieved" options=";save" />
 				<ColumnOption idx="1" pid="9991202" type="retrieved" options=";save" />
-				<ColumnOption idx="2" pid="9991203" type="retrieved" options=";save;disableHeaderSum;enableHistogram;enableHeatmap" />
+				<ColumnOption idx="2" pid="9991203" type="retrieved" options=";save;disableHeaderSum;disableHistogram;disableHeatmap" />
 				<ColumnOption idx="3" pid="9991204" type="retrieved" options=";save" />
 				<ColumnOption idx="4" pid="9991205" type="retrieved" options=";save;foreignKey=9991000" />
 				<ColumnOption idx="5" pid="9991206" type="retrieved" options=";save" />
