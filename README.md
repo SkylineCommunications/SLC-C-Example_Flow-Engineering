@@ -332,7 +332,7 @@ List of all incoming flows on the device.
 | 7   | 9991108 | Expected Rx Bitrate        | Number (Mbps)                 | Expected received bitrate of the flow (from FLE).
 | 8   | 9991109 | Expected Rx Bitrate Status | Normal/Low/High               | Status of 'Rx Bitrate' compared to 'Expected Rx Bitrate'.
 | 9   | 9991110 | Label                      | String                        | Custom label.
-| 10  | 9991111 | FK Outgoing                | String                        | Foreign key to [FLE Outgoing Flows Table](#fle-outgoing-flows-table). Only use this in case of 1-N mapping between incoming and outgoing, otherwise keep empty.
+| 10  | 9991111 | FK Outgoing                | String                        | Foreign key to [FLE Outgoing Flows Table](#fle-outgoing-flows-table). Only use this in case of N-1 mapping between incoming and outgoing, otherwise keep empty.
 | 11  | 9991112 | Linked Flow                | String (GUID)                 | GUID of the provisioned flow. Empty for 'Local System' flows. Foreign key to [FLE Provisioned Flows Table](#fle-provisioned-flows-table).
 | 12  | 9991113 | Flow Owner                 | Local System/Flow Engineering | Local System: Flows that exist on the device, but not provisioned by FLE.<br>Flow Engineering: Flows that are provisioned by FLE.
 | 13  | 9991114 | Present                    | No/Yes                        | Indicates if the flow is present on the system or not.
@@ -354,7 +354,7 @@ List of all outgoing flows on the device.
 | 7   | 9991208 | Expected Tx Bitrate        | Number (Mbps)                 | Expected transmitted bitrate of the flow (from FLE).
 | 8   | 9991209 | Expected Tx Bitrate Status | Normal/Low/High               | Status of 'Tx Bitrate' compared to 'Expected Tx Bitrate'.
 | 9   | 9991210 | Label                      | String                        | Custom label.
-| 10  | 9991211 | FK Outgoing                | String                        | Foreign key to [FLE Incoming Flows Table](#fle-incoming-flows-table). Only use this in case of N-1 mapping between incoming and outgoing, otherwise keep empty.
+| 10  | 9991211 | FK Incomming                | String                        | Foreign key to [FLE Incoming Flows Table](#fle-incoming-flows-table). Only use this in case of 1-N mapping between incoming and outgoing, otherwise keep empty.
 | 11  | 9991212 | Linked Flow                | String (GUID)                 | GUID of the provisioned flow. Empty for 'Local System' flows. Foreign key to [FLE Provisioned Flows Table](#fle-provisioned-flows-table).
 | 12  | 9991213 | Flow Owner                 | Local System/Flow Engineering | Local System: Flows that exist on the device, but not provisioned by FLE.<br>Flow Engineering: Flows that are provisioned by FLE.
 | 13  | 9991214 | Present                    | No/Yes                        | Indicates if the flow is present on the system or not.
