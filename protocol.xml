@@ -69,7 +69,7 @@ Any inquiries can be addressed to:
 		<Relation path="9991100;9991200" name="FLE Incoming Flow - Outgoing Flow" />
 		<Relation path="9991200;9991100" name="FLE Outgoing Flow - Incoming Flow" />
 		<Relation path="9991300;9991100" name="FLE Provisioned Flow - Incoming Flow" />
-		<Relation path="9991300;9991200" name="FLE Provisioned Flow - Outoing Flow" />
+		<Relation path="9991300;9991200" name="FLE Provisioned Flow - Outgoing Flow" />
 	</Relations>
 
 	<Params>
