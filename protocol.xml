@@ -72,6 +72,10 @@ Any inquiries can be addressed to:
 		<Relation path="9991300;9991200" name="FLE Provisioned Flow - Outgoing Flow" />
 	</Relations>
 
+	<ParameterGroups>
+		<Group id="1" name="Ethernet" type="inout" dynamicId="1000" dynamicIndex="*" dynamicUsePK="true" />
+	</ParameterGroups>
+
 	<Params>
 		<Param id="2">
 			<Name>AfterStartup</Name>
@@ -79,7 +83,69 @@ Any inquiries can be addressed to:
 			<Type>dummy</Type>
 		</Param>
 		
-		
+		<Param id="1000">
+			<Name>interfacesTable</Name>
+			<Description>Interfaces Table</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="1001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="1002" type="retrieved" options=""/>
+			</ArrayOptions>
+			<Information>
+				<Subtext>Interfaces table</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:1001|0-1002|1,width:100-300,sort:STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="1001" trending="false">
+			<Name>interfacesTableId</Name>
+			<Description>ID (Interfaces Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1002" trending="false">
+			<Name>interfacesTableName</Name>
+			<Description>Name (Interfaces Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Name of the interface.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 		
 		<Param id="9990990" trending="false">
 			<Name>fleInterAppReceive</Name>

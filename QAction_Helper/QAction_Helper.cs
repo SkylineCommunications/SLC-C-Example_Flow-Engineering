@@ -31,6 +31,44 @@ public static class Parameter
 		/// <summary>PID: 9991258 | Type: write</summary>
 		public const int fleoutgoingflowstableexpectedtxbitrate = 9991258;
 	}
+	public class Interfacestable
+	{
+		/// <summary>PID: 1000</summary>
+		public const int tablePid = 1000;
+		/// <summary>IDX: 0</summary>
+		public const int indexColumn = 0;
+		/// <summary>PID: 1001</summary>
+		public const int indexColumnPid = 1001;
+		public class Pid
+		{
+			/// <summary>PID: 1001 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int interfacestableid_1001 = 1001;
+			/// <summary>PID: 1001 | Type: read</summary>
+			public const int interfacestableid = 1001;
+			/// <summary>PID: 1002 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int interfacestablename_1002 = 1002;
+			/// <summary>PID: 1002 | Type: read</summary>
+			public const int interfacestablename = 1002;
+			public class Write
+			{
+			}
+		}
+		public class Idx
+		{
+			/// <summary>IDX: 0 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int interfacestableid_1001 = 0;
+			/// <summary>IDX: 0 | Type: read</summary>
+			public const int interfacestableid = 0;
+			/// <summary>IDX: 1 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int interfacestablename_1002 = 1;
+			/// <summary>IDX: 1 | Type: read</summary>
+			public const int interfacestablename = 1;
+		}
+	}
 	public class Fleinterfacesoverviewtable
 	{
 		/// <summary>PID: 9991000</summary>
@@ -759,6 +797,8 @@ public class WriteParameters
 }
 public interface SLProtocolExt : SLProtocol
 {
+	/// <summary>PID: 1000</summary>
+	InterfacestableQActionTable interfacestable { get; set; }
 	/// <summary>PID: 9991000</summary>
 	FleinterfacesoverviewtableQActionTable fleinterfacesoverviewtable { get; set; }
 	/// <summary>PID: 9991100</summary>
@@ -768,6 +808,10 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 9991300</summary>
 	FleprovisionedflowstableQActionTable fleprovisionedflowstable { get; set; }
 	object Afterstartup_dummy { get; set; }
+	object Interfacestableid_1001 { get; set; }
+	object Interfacestableid { get; set; }
+	object Interfacestablename_1002 { get; set; }
+	object Interfacestablename { get; set; }
 	object Fleinterappreceive_9990990 { get; set; }
 	object Fleinterappreceive { get; set; }
 	object Fleinterappreturn_9990991 { get; set; }
@@ -908,6 +952,8 @@ public interface SLProtocolExt : SLProtocol
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 {
+	/// <summary>PID: 1000</summary>
+	public InterfacestableQActionTable interfacestable { get; set; }
 	/// <summary>PID: 9991000</summary>
 	public FleinterfacesoverviewtableQActionTable fleinterfacesoverviewtable { get; set; }
 	/// <summary>PID: 9991100</summary>
@@ -918,6 +964,16 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public FleprovisionedflowstableQActionTable fleprovisionedflowstable { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
+	/// <summary>PID: 1001  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Interfacestableid_1001 {get { return GetParameter(1001); }set { SetParameter(1001, value); }}
+	/// <summary>PID: 1001  | Type: read</summary>
+	public System.Object Interfacestableid {get { return GetParameter(1001); }set { SetParameter(1001, value); }}
+	/// <summary>PID: 1002  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Interfacestablename_1002 {get { return GetParameter(1002); }set { SetParameter(1002, value); }}
+	/// <summary>PID: 1002  | Type: read</summary>
+	public System.Object Interfacestablename {get { return GetParameter(1002); }set { SetParameter(1002, value); }}
 	/// <summary>PID: 9990990  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Fleinterappreceive_9990990 {get { return GetParameter(9990990); }set { SetParameter(9990990, value); }}
@@ -1259,12 +1315,20 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
+		interfacestable = new InterfacestableQActionTable(this, 1000, "interfacestable");
 		fleinterfacesoverviewtable = new FleinterfacesoverviewtableQActionTable(this, 9991000, "fleinterfacesoverviewtable");
 		fleincomingflowstable = new FleincomingflowstableQActionTable(this, 9991100, "fleincomingflowstable");
 		fleoutgoingflowstable = new FleoutgoingflowstableQActionTable(this, 9991200, "fleoutgoingflowstable");
 		fleprovisionedflowstable = new FleprovisionedflowstableQActionTable(this, 9991300, "fleprovisionedflowstable");
 		Write = new WriteParameters(this);
 	}
+}
+/// <summary>IDX: 0</summary>
+public class InterfacestableQActionTable : QActionTable, IEnumerable<InterfacestableQActionRow>
+{
+	public InterfacestableQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
+	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
+	public IEnumerator<InterfacestableQActionRow> GetEnumerator() { return new QActionTableEnumerator<InterfacestableQActionRow>(this); }
 }
 /// <summary>IDX: 0</summary>
 public class FleinterfacesoverviewtableQActionTable : QActionTable, IEnumerable<FleinterfacesoverviewtableQActionRow>
@@ -1293,6 +1357,24 @@ public class FleprovisionedflowstableQActionTable : QActionTable, IEnumerable<Fl
 	public FleprovisionedflowstableQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
 	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
 	public IEnumerator<FleprovisionedflowstableQActionRow> GetEnumerator() { return new QActionTableEnumerator<FleprovisionedflowstableQActionRow>(this); }
+}
+/// <summary>IDX: 0</summary>
+public class InterfacestableQActionRow : QActionTableRow
+{
+	/// <summary>PID: 1001 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Interfacestableid_1001 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 1001 | Type: read</summary>
+	public System.Object Interfacestableid { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 1002 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Interfacestablename_1002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 1002 | Type: read</summary>
+	public System.Object Interfacestablename { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	public InterfacestableQActionRow() : base(0, 2) { }
+	public InterfacestableQActionRow(System.Object[] oRow) : base(0, 2, oRow) { }
+	public static implicit operator InterfacestableQActionRow(System.Object[] source) { return new InterfacestableQActionRow(source); }
+	public static implicit operator System.Object[](InterfacestableQActionRow source) { return source.ToObjectArray(); }
 }
 /// <summary>IDX: 0</summary>
 public class FleinterfacesoverviewtableQActionRow : QActionTableRow
