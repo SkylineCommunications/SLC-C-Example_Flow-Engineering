@@ -89,6 +89,107 @@ Any inquiries can be addressed to:
 			<Type>dummy</Type>
 		</Param>
 		
+		<Param id="100" trending="false" save="true">
+			<Name>sourceVsgName</Name>
+			<Description>Source VSG Name</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Name of the source virtual signal group to connect.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue>LA CAM-01</DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="101" setter="true">
+			<Name>sourceVsgName</Name>
+			<Description>Source VSG Name</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="102" trending="false" save="true">
+			<Name>destinationVsgName</Name>
+			<Description>Destination VSG Name</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Name of the destination virtual signal group to connect.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue>FLE Test 1</DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="103" setter="true">
+			<Name>destinationVsgName</Name>
+			<Description>Destination VSG Name</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
 		<Param id="200" trending="false">
 			<Name>lastConnectTime</Name>
 			<Description>Last Connect Time</Description>
@@ -108,7 +209,7 @@ Any inquiries can be addressed to:
 				<Positions>
 					<Position>
 						<Page>General</Page>
-						<Column>0</Column>
+						<Column>1</Column>
 						<Row>0</Row>
 					</Position>
 				</Positions>
@@ -143,7 +244,7 @@ Any inquiries can be addressed to:
 				<Positions>
 					<Position>
 						<Page>General</Page>
-						<Column>0</Column>
+						<Column>1</Column>
 						<Row>1</Row>
 					</Position>
 				</Positions>
@@ -173,7 +274,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>1</Column>
-						<Row>0</Row>
+						<Row>3</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -208,7 +309,7 @@ Any inquiries can be addressed to:
 					<Position>
 						<Page>General</Page>
 						<Column>1</Column>
-						<Row>1</Row>
+						<Row>4</Row>
 					</Position>
 				</Positions>
 			</Display>

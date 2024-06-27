@@ -11,6 +11,8 @@ using Skyline.DataMiner.Net.Apps.DataMinerObjectModel;
 using Skyline.DataMiner.Net.Messages.SLDataGateway;
 using Skyline.DataMiner.Scripting;
 
+using Parameter = Skyline.DataMiner.Scripting.Parameter;
+
 /// <summary>
 /// DataMiner QAction Class.
 /// </summary>
@@ -26,22 +28,21 @@ public class QAction
 	{
 		try
 		{
-			var dms = protocol.GetDms();
-
-			var domHelper = new DomHelper(protocol.SLNet.SendMessages, "(slc)virtualsignalgroup");
-			var source = GetVirtualSignalGroup(domHelper, "LA CAM-01");
-			var destination = GetVirtualSignalGroup(domHelper, "FLE Test 1");
+			GetVirtualSignalGroups(protocol, out var srcVsg, out var dstVsg);
 
 			switch (_nextAction)
 			{
 				case ControlSurfaceAction.Connect:
-					PerformConnect(protocol, dms, source, destination);
-					_nextAction= ControlSurfaceAction.Disconnect;
+					PerformConnect(protocol, srcVsg, dstVsg);
+					_nextAction = ControlSurfaceAction.Disconnect;
+
 					break;
+
 				case ControlSurfaceAction.Disconnect:
 				default:
-					PerformDisconnect(protocol, dms, destination);
-					_nextAction= ControlSurfaceAction.Connect;
+					PerformDisconnect(protocol, dstVsg);
+					_nextAction = ControlSurfaceAction.Connect;
+
 					break;
 			}
 		}
@@ -51,20 +52,21 @@ public class QAction
 		}
 	}
 
-	private void PerformConnect(SLProtocolExt protocol, IDms dms, DomInstance source, DomInstance destination)
+	private void PerformConnect(SLProtocolExt protocol, DomInstance source, DomInstance destination)
 	{
 		protocol.Lastconnecttime = DateTime.Now.ToOADate();
-		ExecuteTakeScript(dms, "Connect", source.ID.Id, destination.ID.Id);
+		ExecuteTakeScript(protocol, "Connect", source.ID.Id, destination.ID.Id);
 	}
 
-	private void PerformDisconnect(SLProtocolExt protocol, IDms dms, DomInstance destination)
+	private void PerformDisconnect(SLProtocolExt protocol, DomInstance destination)
 	{
 		protocol.Lastdisconnecttime = DateTime.Now.ToOADate();
-		ExecuteTakeScript(dms, "Disconnect", default, destination.ID.Id);
+		ExecuteTakeScript(protocol, "Disconnect", default, destination.ID.Id);
 	}
 
-	private void ExecuteTakeScript(IDms dms, string action, Guid source, Guid destination)
+	private void ExecuteTakeScript(SLProtocolExt protocol, string action, Guid source, Guid destination)
 	{
+		var dms = protocol.GetDms();
 		var script = dms.GetScript("ControlSurface_Take");
 
 		var parameters = new[]
@@ -79,9 +81,25 @@ public class QAction
 		script.ExecuteAsync(parameters, dummies);
 	}
 
+	private void GetVirtualSignalGroups(SLProtocolExt protocol, out DomInstance srcVsg, out DomInstance dstVsg)
+	{
+		var parameters = (object[])protocol.GetParameters(new uint[] { Parameter.sourcevsgname, Parameter.destinationvsgname });
+		var sourceVsgName = Convert.ToString(parameters[0]);
+		var destinationVsgName = Convert.ToString(parameters[1]);
+
+		var domHelper = new DomHelper(protocol.SLNet.SendMessages, "(slc)virtualsignalgroup");
+
+		srcVsg = GetVirtualSignalGroup(domHelper, sourceVsgName);
+		dstVsg = GetVirtualSignalGroup(domHelper, destinationVsgName);
+	}
+
 	private DomInstance GetVirtualSignalGroup(DomHelper domHelper, string name)
 	{
 		var filter = DomInstanceExposers.Name.Equal(name);
-		return domHelper.DomInstances.Read(filter).FirstOrDefault();
+
+		var instance = domHelper.DomInstances.Read(filter).SingleOrDefault()
+			?? throw new Exception($"Couldn't find VSG with name '{name}'");
+
+		return instance;
 	}
 }

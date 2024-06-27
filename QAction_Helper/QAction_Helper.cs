@@ -8,6 +8,16 @@ namespace Skyline.DataMiner.Scripting
 {
 public static class Parameter
 {
+	/// <summary>PID: 100 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int sourcevsgname_100 = 100;
+	/// <summary>PID: 100 | Type: read</summary>
+	public const int sourcevsgname = 100;
+	/// <summary>PID: 102 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int destinationvsgname_102 = 102;
+	/// <summary>PID: 102 | Type: read</summary>
+	public const int destinationvsgname = 102;
 	/// <summary>PID: 200 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public const int lastconnecttime_200 = 200;
@@ -40,6 +50,16 @@ public static class Parameter
 	public const int fleinterappreturn = 9990991;
 	public class Write
 	{
+		/// <summary>PID: 101 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int sourcevsgname_101 = 101;
+		/// <summary>PID: 101 | Type: write</summary>
+		public const int sourcevsgname = 101;
+		/// <summary>PID: 103 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int destinationvsgname_103 = 103;
+		/// <summary>PID: 103 | Type: write</summary>
+		public const int destinationvsgname = 103;
 		/// <summary>PID: 9991158 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int fleincomingflowstableexpectedrxbitrate_9991158 = 9991158;
@@ -799,6 +819,10 @@ public static class Parameter
 }
 public class WriteParameters
 {
+	/// <summary>PID: 101  | Type: write</summary>
+	public System.Object Sourcevsgname {get { return Protocol.GetParameter(101); }set { Protocol.SetParameter(101, value); }}
+	/// <summary>PID: 103  | Type: write</summary>
+	public System.Object Destinationvsgname {get { return Protocol.GetParameter(103); }set { Protocol.SetParameter(103, value); }}
 	/// <summary>PID: 9991158  | Type: write</summary>
 	public System.Object Fleincomingflowstableexpectedrxbitrate {get { return Protocol.GetParameter(9991158); }set { Protocol.SetParameter(9991158, value); }}
 	/// <summary>PID: 9991165  | Type: write | DISCREETS: Delete = 1</summary>
@@ -829,6 +853,12 @@ public interface SLProtocolExt : SLProtocol
 	FleprovisionedflowstableQActionTable fleprovisionedflowstable { get; set; }
 	object Afterstartup_dummy { get; set; }
 	object Trigger1min_dummy { get; set; }
+	object Sourcevsgname_100 { get; set; }
+	object Sourcevsgname { get; set; }
+	object Sourcevsgname_101 { get; set; }
+	object Destinationvsgname_102 { get; set; }
+	object Destinationvsgname { get; set; }
+	object Destinationvsgname_103 { get; set; }
 	object Lastconnecttime_200 { get; set; }
 	object Lastconnecttime { get; set; }
 	object Connectduration_201 { get; set; }
@@ -995,6 +1025,22 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 10  | Type: dummy</summary>
 	public System.Object Trigger1min_dummy {get { return GetParameter(10); }set { SetParameter(10, value); }}
+	/// <summary>PID: 100  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Sourcevsgname_100 {get { return GetParameter(100); }set { SetParameter(100, value); }}
+	/// <summary>PID: 100  | Type: read</summary>
+	public System.Object Sourcevsgname {get { return GetParameter(100); }set { SetParameter(100, value); }}
+	/// <summary>PID: 101  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Sourcevsgname_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}
+	/// <summary>PID: 102  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Destinationvsgname_102 {get { return GetParameter(102); }set { SetParameter(102, value); }}
+	/// <summary>PID: 102  | Type: read</summary>
+	public System.Object Destinationvsgname {get { return GetParameter(102); }set { SetParameter(102, value); }}
+	/// <summary>PID: 103  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Destinationvsgname_103 {get { return GetParameter(103); }set { SetParameter(103, value); }}
 	/// <summary>PID: 200  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Lastconnecttime_200 {get { return GetParameter(200); }set { SetParameter(200, value); }}
