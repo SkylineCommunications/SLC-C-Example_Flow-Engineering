@@ -28,11 +28,13 @@
 				switch (Message.ActionType)
 				{
 					case ActionType.Create:
+						UpdateLastDuration(protocol, Parameter.lastconnecttime, Parameter.connectduration);
 						var addedFlows = flowEngineering.RegisterProvisionedFlowFromInterAppMessage(protocol, Message);
 
 						break;
 
 					case ActionType.Delete:
+						UpdateLastDuration(protocol, Parameter.lastdisconnecttime, Parameter.disconnectduration);
 						var (provisionedFlow, removedFlows) = flowEngineering.UnregisterProvisionedFlowFromInterAppMessage(protocol, Message);
 
 						break;
@@ -53,5 +55,20 @@
 			optionalReturnMessage = null;
 			return true;
 		}
+
+		private void UpdateLastDuration(SLProtocolExt protocol, int pidTime, int pidDuration)
+		{
+			var lastTimeDouble = Convert.ToDouble(protocol.GetParameter(pidTime));
+			if (lastTimeDouble <= 0)
+			{
+				return;
+			}
+
+			var lastTime = DateTime.FromOADate(lastTimeDouble);
+			var duration = DateTime.Now - lastTime;
+
+			protocol.SetParameter(pidDuration, duration.TotalMilliseconds);
+		}
+
 	}
 }

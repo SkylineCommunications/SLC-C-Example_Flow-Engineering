@@ -8,6 +8,26 @@ namespace Skyline.DataMiner.Scripting
 {
 public static class Parameter
 {
+	/// <summary>PID: 200 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int lastconnecttime_200 = 200;
+	/// <summary>PID: 200 | Type: read</summary>
+	public const int lastconnecttime = 200;
+	/// <summary>PID: 201 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int connectduration_201 = 201;
+	/// <summary>PID: 201 | Type: read</summary>
+	public const int connectduration = 201;
+	/// <summary>PID: 210 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int lastdisconnecttime_210 = 210;
+	/// <summary>PID: 210 | Type: read</summary>
+	public const int lastdisconnecttime = 210;
+	/// <summary>PID: 211 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int disconnectduration_211 = 211;
+	/// <summary>PID: 211 | Type: read</summary>
+	public const int disconnectduration = 211;
 	/// <summary>PID: 9990990 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public const int fleinterappreceive_9990990 = 9990990;
@@ -808,6 +828,15 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 9991300</summary>
 	FleprovisionedflowstableQActionTable fleprovisionedflowstable { get; set; }
 	object Afterstartup_dummy { get; set; }
+	object Trigger1min_dummy { get; set; }
+	object Lastconnecttime_200 { get; set; }
+	object Lastconnecttime { get; set; }
+	object Connectduration_201 { get; set; }
+	object Connectduration { get; set; }
+	object Lastdisconnecttime_210 { get; set; }
+	object Lastdisconnecttime { get; set; }
+	object Disconnectduration_211 { get; set; }
+	object Disconnectduration { get; set; }
 	object Interfacestableid_1001 { get; set; }
 	object Interfacestableid { get; set; }
 	object Interfacestablename_1002 { get; set; }
@@ -964,6 +993,28 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public FleprovisionedflowstableQActionTable fleprovisionedflowstable { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
+	/// <summary>PID: 10  | Type: dummy</summary>
+	public System.Object Trigger1min_dummy {get { return GetParameter(10); }set { SetParameter(10, value); }}
+	/// <summary>PID: 200  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Lastconnecttime_200 {get { return GetParameter(200); }set { SetParameter(200, value); }}
+	/// <summary>PID: 200  | Type: read</summary>
+	public System.Object Lastconnecttime {get { return GetParameter(200); }set { SetParameter(200, value); }}
+	/// <summary>PID: 201  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Connectduration_201 {get { return GetParameter(201); }set { SetParameter(201, value); }}
+	/// <summary>PID: 201  | Type: read</summary>
+	public System.Object Connectduration {get { return GetParameter(201); }set { SetParameter(201, value); }}
+	/// <summary>PID: 210  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Lastdisconnecttime_210 {get { return GetParameter(210); }set { SetParameter(210, value); }}
+	/// <summary>PID: 210  | Type: read</summary>
+	public System.Object Lastdisconnecttime {get { return GetParameter(210); }set { SetParameter(210, value); }}
+	/// <summary>PID: 211  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Disconnectduration_211 {get { return GetParameter(211); }set { SetParameter(211, value); }}
+	/// <summary>PID: 211  | Type: read</summary>
+	public System.Object Disconnectduration {get { return GetParameter(211); }set { SetParameter(211, value); }}
 	/// <summary>PID: 1001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Interfacestableid_1001 {get { return GetParameter(1001); }set { SetParameter(1001, value); }}

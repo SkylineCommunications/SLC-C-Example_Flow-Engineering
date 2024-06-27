@@ -55,7 +55,7 @@ Any inquiries can be addressed to:
 	<DeviceOID>4</DeviceOID>
 	<ElementType>Example</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General;Flow Engineering" wideColumnPages="Flow Engineering"/>
+	<Display defaultPage="General" pageOrder="General;Interfaces;Flow Engineering" wideColumnPages="Flow Engineering"/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
@@ -78,9 +78,143 @@ Any inquiries can be addressed to:
 
 	<Params>
 		<Param id="2">
-			<Name>AfterStartup</Name>
+			<Name>afterStartup</Name>
 			<Description>After Startup</Description>
 			<Type>dummy</Type>
+		</Param>
+		
+		<Param id="10">
+			<Name>trigger1min</Name>
+			<Description>Trigger 1 Min</Description>
+			<Type>dummy</Type>
+		</Param>
+		
+		<Param id="200" trending="false">
+			<Name>lastConnectTime</Name>
+			<Description>Last Connect Time</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Time of last connection.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
+		<Param id="201" trending="true">
+			<Name>connectDuration</Name>
+			<Description>Connect Duration</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Duration of last connection.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+				<Normal>100</Normal>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>1</Decimals>
+				<Units>ms</Units>
+				<Range>
+					<Low>0</Low>
+				</Range>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="210" trending="false">
+			<Name>lastDisconnectTime</Name>
+			<Description>Last Disconnect Time</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Time of last connection.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<Decimals>8</Decimals>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>8</Decimals>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="datetime">number</Type>
+			</Measurement>
+		</Param>
+		<Param id="211" trending="true">
+			<Name>disconnectDuration</Name>
+			<Description>Disconnect Duration</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Duration of last connection.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+				<Normal>100</Normal>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Decimals>1</Decimals>
+				<Units>ms</Units>
+				<Range>
+					<Low>0</Low>
+				</Range>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
 		</Param>
 		
 		<Param id="1000">
@@ -98,7 +232,7 @@ Any inquiries can be addressed to:
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>General</Page>
+						<Page>Interfaces</Page>
 						<Column>0</Column>
 						<Row>0</Row>
 					</Position>
@@ -2341,6 +2475,8 @@ Any inquiries can be addressed to:
 	<QActions>
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2" />
 
+		<QAction id="100" name="Execute Connect" encoding="csharp" triggers="10" />
+
 		<QAction id="9990990" name="Flow Engineering InterApp" encoding="csharp" triggers="9990990" />
 		<QAction id="9991000" name="Flow Engineering Sets" encoding="csharp" triggers="9991158;9991165;9991258;9991265;9991365" row="true" />
 
@@ -2349,10 +2485,17 @@ Any inquiries can be addressed to:
 	<Groups>
 		<Group id="2">
 			<Name>After Startup</Name>
-			<Description>After Startup</Description>
 			<Type>poll action</Type>
 			<Content>
 				<Action>2</Action>
+			</Content>
+		</Group>
+
+		<Group id="10">
+			<Name>Timer 1 Min</Name>
+			<Type>poll action</Type>
+			<Content>
+				<Action>10</Action>
 			</Content>
 		</Group>
 	</Groups>
@@ -2380,34 +2523,24 @@ Any inquiries can be addressed to:
 			<On id="2">parameter</On>
 			<Type>run actions</Type>
 		</Action>
+
+		<Action id="10">
+			<Name>Trigger 1 Min</Name>
+			<On id="10">parameter</On>
+			<Type>run actions</Type>
+		</Action>
 	</Actions>
 
 	<Timers>
 		<Timer id="1">
-			<Name>Fast Timer (10s)</Name>
-			<Time initial="true">10000</Time>
+			<Name>Timer (1m)</Name>
+			<Time initial="true">60000</Time>
 			<Interval>75</Interval>
 			<Content>
-			</Content>
-		</Timer>
-		<Timer id="2">
-			<Name>Medium Timer (1m)</Name>
-			<Time initial="true" dataDisplay="30000">60000</Time>
-			<Interval>75</Interval>
-			<Content>
-			</Content>
-		</Timer>
-		<Timer id="3">
-			<Name>Slow Timer (1h)</Name>
-			<Time initial="true">3600000</Time>
-			<Interval>75</Interval>
-			<Content>
+				<Group>10</Group>
 			</Content>
 		</Timer>
 	</Timers>
-
-	<PortSettings>
-	</PortSettings>
 
 	<VersionHistory>
 		<Branches>

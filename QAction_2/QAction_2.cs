@@ -41,7 +41,7 @@ public static class QAction
 			new InterfacestableQActionRow
 			{
 				Interfacestableid = "1",
-				Interfacestablename = "Ethernet 2",
+				Interfacestablename = "Ethernet 1",
 			},
 			new InterfacestableQActionRow
 			{
