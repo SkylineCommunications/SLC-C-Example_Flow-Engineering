@@ -176,8 +176,8 @@ The `FlowInfoMessage` is being used to update the flow IDs and owner in the flow
 | Property                      | Type                       | Description                                                                                    |
 |-------------------------------|----------------------------|------------------------------------------------------------------------------------------------|
 | ProvisionedFlowId             | Guid                       | The DOM instance ID of the provisioned flow.                                                   |
-| SourceId                      | Guid                       | The DOM instance ID of the source virtual signal group.                                        |
-| DestinationId                 | Guid                       | The DOM instance ID of the destination virtual signal group.                                   |
+| SourceId                      | Guid                       | The DOM instance ID of the source flow.                                                        |
+| DestinationId                 | Guid                       | The DOM instance ID of the destination flow.                                                   |
 | IncomingDcfInterfaceID        | int                        | The ID of the incoming DCF interface.                                                          |
 | IncomingDcfDynamicLink        | string                     | "ParameterGroupID;PrimaryKey" of the incoming DCF interface.                                   |
 | OutgoingDcfInterfaceID        | int                        | The ID of the outgoing DCF interface.                                                          |
